@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FE852BD2E8580076296B /* SadhanaApp.swift */; };
+		8729FE882BD2E8580076296B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FE872BD2E8580076296B /* ContentView.swift */; };
+		8729FE8A2BD2E85B0076296B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8729FE892BD2E85B0076296B /* Assets.xcassets */; };
+		8729FE8E2BD2E85B0076296B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8729FE8D2BD2E85B0076296B /* Preview Assets.xcassets */; };
+		8729FE982BD2E85C0076296B /* SadhanaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FE972BD2E85C0076296B /* SadhanaTests.swift */; };
+		8729FEA22BD2E85C0076296B /* SadhanaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */; };
+		8729FEA42BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8729FE942BD2E85C0076296B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8729FE7A2BD2E8580076296B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8729FE812BD2E8580076296B;
+			remoteInfo = Sadhana;
+		};
+		8729FE9E2BD2E85C0076296B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8729FE7A2BD2E8580076296B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8729FE812BD2E8580076296B;
+			remoteInfo = Sadhana;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8729FE822BD2E8580076296B /* Sadhana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sadhana.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8729FE852BD2E8580076296B /* SadhanaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaApp.swift; sourceTree = "<group>"; };
+		8729FE872BD2E8580076296B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8729FE892BD2E85B0076296B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8729FE8B2BD2E85B0076296B /* Sadhana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sadhana.entitlements; sourceTree = "<group>"; };
+		8729FE8D2BD2E85B0076296B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8729FE932BD2E85C0076296B /* SadhanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadhanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8729FE972BD2E85C0076296B /* SadhanaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaTests.swift; sourceTree = "<group>"; };
+		8729FE9D2BD2E85C0076296B /* SadhanaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadhanaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITests.swift; sourceTree = "<group>"; };
+		8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8729FE7F2BD2E8580076296B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE902BD2E85C0076296B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE9A2BD2E85C0076296B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8729FE792BD2E8580076296B = {
+			isa = PBXGroup;
+			children = (
+				8729FE842BD2E8580076296B /* Sadhana */,
+				8729FE962BD2E85C0076296B /* SadhanaTests */,
+				8729FEA02BD2E85C0076296B /* SadhanaUITests */,
+				8729FE832BD2E8580076296B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8729FE832BD2E8580076296B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE822BD2E8580076296B /* Sadhana.app */,
+				8729FE932BD2E85C0076296B /* SadhanaTests.xctest */,
+				8729FE9D2BD2E85C0076296B /* SadhanaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8729FE842BD2E8580076296B /* Sadhana */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE852BD2E8580076296B /* SadhanaApp.swift */,
+				8729FE872BD2E8580076296B /* ContentView.swift */,
+				8729FE892BD2E85B0076296B /* Assets.xcassets */,
+				8729FE8B2BD2E85B0076296B /* Sadhana.entitlements */,
+				8729FE8C2BD2E85B0076296B /* Preview Content */,
+			);
+			path = Sadhana;
+			sourceTree = "<group>";
+		};
+		8729FE8C2BD2E85B0076296B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE8D2BD2E85B0076296B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8729FE962BD2E85C0076296B /* SadhanaTests */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE972BD2E85C0076296B /* SadhanaTests.swift */,
+			);
+			path = SadhanaTests;
+			sourceTree = "<group>";
+		};
+		8729FEA02BD2E85C0076296B /* SadhanaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */,
+				8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */,
+			);
+			path = SadhanaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8729FE812BD2E8580076296B /* Sadhana */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8729FEA72BD2E85C0076296B /* Build configuration list for PBXNativeTarget "Sadhana" */;
+			buildPhases = (
+				8729FE7E2BD2E8580076296B /* Sources */,
+				8729FE7F2BD2E8580076296B /* Frameworks */,
+				8729FE802BD2E8580076296B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sadhana;
+			productName = Sadhana;
+			productReference = 8729FE822BD2E8580076296B /* Sadhana.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8729FE922BD2E85C0076296B /* SadhanaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8729FEAA2BD2E85C0076296B /* Build configuration list for PBXNativeTarget "SadhanaTests" */;
+			buildPhases = (
+				8729FE8F2BD2E85C0076296B /* Sources */,
+				8729FE902BD2E85C0076296B /* Frameworks */,
+				8729FE912BD2E85C0076296B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8729FE952BD2E85C0076296B /* PBXTargetDependency */,
+			);
+			name = SadhanaTests;
+			productName = SadhanaTests;
+			productReference = 8729FE932BD2E85C0076296B /* SadhanaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8729FE9C2BD2E85C0076296B /* SadhanaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8729FEAD2BD2E85C0076296B /* Build configuration list for PBXNativeTarget "SadhanaUITests" */;
+			buildPhases = (
+				8729FE992BD2E85C0076296B /* Sources */,
+				8729FE9A2BD2E85C0076296B /* Frameworks */,
+				8729FE9B2BD2E85C0076296B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8729FE9F2BD2E85C0076296B /* PBXTargetDependency */,
+			);
+			name = SadhanaUITests;
+			productName = SadhanaUITests;
+			productReference = 8729FE9D2BD2E85C0076296B /* SadhanaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8729FE7A2BD2E8580076296B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					8729FE812BD2E8580076296B = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					8729FE922BD2E85C0076296B = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 8729FE812BD2E8580076296B;
+					};
+					8729FE9C2BD2E85C0076296B = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 8729FE812BD2E8580076296B;
+					};
+				};
+			};
+			buildConfigurationList = 8729FE7D2BD2E8580076296B /* Build configuration list for PBXProject "Sadhana" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8729FE792BD2E8580076296B;
+			productRefGroup = 8729FE832BD2E8580076296B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8729FE812BD2E8580076296B /* Sadhana */,
+				8729FE922BD2E85C0076296B /* SadhanaTests */,
+				8729FE9C2BD2E85C0076296B /* SadhanaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8729FE802BD2E8580076296B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8729FE8E2BD2E85B0076296B /* Preview Assets.xcassets in Resources */,
+				8729FE8A2BD2E85B0076296B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE912BD2E85C0076296B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE9B2BD2E85C0076296B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8729FE7E2BD2E8580076296B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8729FE882BD2E8580076296B /* ContentView.swift in Sources */,
+				8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE8F2BD2E85C0076296B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8729FE982BD2E85C0076296B /* SadhanaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8729FE992BD2E85C0076296B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8729FEA22BD2E85C0076296B /* SadhanaUITests.swift in Sources */,
+				8729FEA42BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8729FE952BD2E85C0076296B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8729FE812BD2E8580076296B /* Sadhana */;
+			targetProxy = 8729FE942BD2E85C0076296B /* PBXContainerItemProxy */;
+		};
+		8729FE9F2BD2E85C0076296B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8729FE812BD2E8580076296B /* Sadhana */;
+			targetProxy = 8729FE9E2BD2E85C0076296B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8729FEA52BD2E85C0076296B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8729FEA62BD2E85C0076296B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8729FEA82BD2E85C0076296B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sadhana/Sadhana.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Sadhana/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.Sadhana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8729FEA92BD2E85C0076296B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sadhana/Sadhana.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Sadhana/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.Sadhana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8729FEAB2BD2E85C0076296B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.SadhanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sadhana.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sadhana";
+			};
+			name = Debug;
+		};
+		8729FEAC2BD2E85C0076296B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.SadhanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sadhana.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sadhana";
+			};
+			name = Release;
+		};
+		8729FEAE2BD2E85C0076296B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.SadhanaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sadhana;
+			};
+			name = Debug;
+		};
+		8729FEAF2BD2E85C0076296B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sadhana.SadhanaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sadhana;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8729FE7D2BD2E8580076296B /* Build configuration list for PBXProject "Sadhana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8729FEA52BD2E85C0076296B /* Debug */,
+				8729FEA62BD2E85C0076296B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8729FEA72BD2E85C0076296B /* Build configuration list for PBXNativeTarget "Sadhana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8729FEA82BD2E85C0076296B /* Debug */,
+				8729FEA92BD2E85C0076296B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8729FEAA2BD2E85C0076296B /* Build configuration list for PBXNativeTarget "SadhanaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8729FEAB2BD2E85C0076296B /* Debug */,
+				8729FEAC2BD2E85C0076296B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8729FEAD2BD2E85C0076296B /* Build configuration list for PBXNativeTarget "SadhanaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8729FEAE2BD2E85C0076296B /* Debug */,
+				8729FEAF2BD2E85C0076296B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8729FE7A2BD2E8580076296B /* Project object */;
+}
