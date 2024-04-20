@@ -14,6 +14,12 @@
 		8729FE982BD2E85C0076296B /* SadhanaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FE972BD2E85C0076296B /* SadhanaTests.swift */; };
 		8729FEA22BD2E85C0076296B /* SadhanaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */; };
 		8729FEA42BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */; };
+		879E16312BD4316500D9007B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16302BD4316500D9007B /* LogInView.swift */; };
+		879E16332BD4324D00D9007B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16322BD4324D00D9007B /* InputView.swift */; };
+		879E16352BD4399800D9007B /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16342BD4399800D9007B /* RegistrationView.swift */; };
+		879E16372BD43D2500D9007B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16362BD43D2500D9007B /* ProfileView.swift */; };
+		879E16392BD43E9800D9007B /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16382BD43E9800D9007B /* SettingsRowView.swift */; };
+		879E163B2BD43FE800D9007B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E163A2BD43FE800D9007B /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,12 @@
 		8729FE9D2BD2E85C0076296B /* SadhanaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadhanaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITests.swift; sourceTree = "<group>"; };
 		8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		879E16302BD4316500D9007B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		879E16322BD4324D00D9007B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		879E16342BD4399800D9007B /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		879E16362BD43D2500D9007B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		879E16382BD43E9800D9007B /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		879E163A2BD43FE800D9007B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +107,10 @@
 		8729FE842BD2E8580076296B /* Sadhana */ = {
 			isa = PBXGroup;
 			children = (
-				8729FE852BD2E8580076296B /* SadhanaApp.swift */,
-				8729FE872BD2E8580076296B /* ContentView.swift */,
+				879E16292BD430CE00D9007B /* App */,
+				879E162A2BD430D800D9007B /* Components */,
+				879E162B2BD430DD00D9007B /* Core */,
+				879E162C2BD430E700D9007B /* Model */,
 				8729FE892BD2E85B0076296B /* Assets.xcassets */,
 				8729FE8B2BD2E85B0076296B /* Sadhana.entitlements */,
 				8729FE8C2BD2E85B0076296B /* Preview Content */,
@@ -127,6 +141,66 @@
 				8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */,
 			);
 			path = SadhanaUITests;
+			sourceTree = "<group>";
+		};
+		879E16292BD430CE00D9007B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE852BD2E8580076296B /* SadhanaApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		879E162A2BD430D800D9007B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				879E16322BD4324D00D9007B /* InputView.swift */,
+				879E16382BD43E9800D9007B /* SettingsRowView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		879E162B2BD430DD00D9007B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				879E162E2BD4311900D9007B /* Authentication */,
+				879E162F2BD4312300D9007B /* Profile */,
+				879E162D2BD4310400D9007B /* Root */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		879E162C2BD430E700D9007B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				879E163A2BD43FE800D9007B /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		879E162D2BD4310400D9007B /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				8729FE872BD2E8580076296B /* ContentView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		879E162E2BD4311900D9007B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				879E16302BD4316500D9007B /* LogInView.swift */,
+				879E16342BD4399800D9007B /* RegistrationView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		879E162F2BD4312300D9007B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				879E16362BD43D2500D9007B /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +333,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				879E16312BD4316500D9007B /* LogInView.swift in Sources */,
+				879E16332BD4324D00D9007B /* InputView.swift in Sources */,
 				8729FE882BD2E8580076296B /* ContentView.swift in Sources */,
 				8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */,
+				879E163B2BD43FE800D9007B /* User.swift in Sources */,
+				879E16372BD43D2500D9007B /* ProfileView.swift in Sources */,
+				879E16352BD4399800D9007B /* RegistrationView.swift in Sources */,
+				879E16392BD43E9800D9007B /* SettingsRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
