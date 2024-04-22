@@ -1,7 +1,5 @@
 import SwiftUI
 
-
-
 struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     

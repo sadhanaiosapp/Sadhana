@@ -4,6 +4,7 @@ struct User: Identifiable, Codable {
     let id: String
     let fullname: String
     let email: String
+    var practices: [ToDoListItem] = []
     
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
@@ -14,8 +15,4 @@ struct User: Identifiable, Codable {
         
         return ""
     }
-}
-
-extension User {
-    static var MOCK_USER = User(id: NSUUID().uuidString, fullname: "Kobe Bryant", email: "test@gmail.com")
 }

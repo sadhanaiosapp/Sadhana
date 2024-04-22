@@ -1,4 +1,6 @@
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 struct DailyView: View {
     @EnvironmentObject var viewModel: AuthViewModel
@@ -6,8 +8,11 @@ struct DailyView: View {
     var body: some View {
         if let user = viewModel.currentUser {
             NavigationStack {
-                VStack {
-                    
+                VStack() {
+                    List(user.practices) { item in
+                        ToDoListItemView(item: item)
+                    }
+                    .listStyle(PlainListStyle())
                 }
                 .navigationTitle("Daily Sadhana")
                 .toolbar(content:  {

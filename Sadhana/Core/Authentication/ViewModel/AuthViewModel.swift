@@ -1,7 +1,6 @@
 import SwiftUI
 import Firebase
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 protocol AuthenticationFormProtocol {
     var formIsValid: Bool { get }
@@ -17,6 +16,7 @@ class AuthViewModel: ObservableObject {
         
         Task {
             await fetchUser()
+            await fetchPractices()
         }
     }
     
@@ -73,5 +73,21 @@ class AuthViewModel: ObservableObject {
         }
         
         print("Fetching user data ... Current user is \(String(describing: self.currentUser))")
+    }
+    
+    func fetchPractices() async {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices").getDocuments()
+        
+        var practices = [ToDoListItem].self()
+        if snapshot != nil {
+            for document in snapshot!.documents {
+                var data = document.data()
+                var item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String,
+                                        mandala: data["mandala"] as! String, count: data["count"] as! String)
+                practices.append(item)
+            }
+            self.currentUser?.practices = practices
+        }
     }
 }
