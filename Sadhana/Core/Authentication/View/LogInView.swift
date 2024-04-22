@@ -28,7 +28,6 @@ struct LogInView: View {
                     Task {
                         try await viewModel.signIn(withEmail: email, password: password)
                     }
-                    
                 } label: {
                     HStack {
                         Text("SIGN IN")

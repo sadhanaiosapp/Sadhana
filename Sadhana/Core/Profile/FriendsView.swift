@@ -1,9 +1,13 @@
 import SwiftUI
 
 struct FriendsView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
-        Text("hello world")
-            .foregroundColor(Color(.systemGreen))
+        if let user = viewModel.currentUser {
+            Text("hello world")
+                .foregroundColor(Color(.systemGreen))
+        }
     }
 }
 
