@@ -14,6 +14,9 @@
 		8729FE982BD2E85C0076296B /* SadhanaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FE972BD2E85C0076296B /* SadhanaTests.swift */; };
 		8729FEA22BD2E85C0076296B /* SadhanaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */; };
 		8729FEA42BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */; };
+		876E812B2BD6AB090070CBB1 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E812A2BD6AB090070CBB1 /* DailyView.swift */; };
+		876E812D2BD6AB130070CBB1 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E812C2BD6AB130070CBB1 /* CalenderView.swift */; };
+		876E812F2BD6AB220070CBB1 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E812E2BD6AB220070CBB1 /* FriendsView.swift */; };
 		879E16312BD4316500D9007B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16302BD4316500D9007B /* LogInView.swift */; };
 		879E16332BD4324D00D9007B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16322BD4324D00D9007B /* InputView.swift */; };
 		879E16352BD4399800D9007B /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E16342BD4399800D9007B /* RegistrationView.swift */; };
@@ -57,6 +60,9 @@
 		8729FE9D2BD2E85C0076296B /* SadhanaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SadhanaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8729FEA12BD2E85C0076296B /* SadhanaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITests.swift; sourceTree = "<group>"; };
 		8729FEA32BD2E85C0076296B /* SadhanaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SadhanaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		876E812A2BD6AB090070CBB1 /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
+		876E812C2BD6AB130070CBB1 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		876E812E2BD6AB220070CBB1 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		879E16302BD4316500D9007B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		879E16322BD4324D00D9007B /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		879E16342BD4399800D9007B /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
@@ -211,6 +217,9 @@
 		879E162F2BD4312300D9007B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				876E812A2BD6AB090070CBB1 /* DailyView.swift */,
+				876E812C2BD6AB130070CBB1 /* CalenderView.swift */,
+				876E812E2BD6AB220070CBB1 /* FriendsView.swift */,
 				879E16362BD43D2500D9007B /* ProfileView.swift */,
 			);
 			path = Profile;
@@ -379,8 +388,11 @@
 				8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */,
 				879E163B2BD43FE800D9007B /* User.swift in Sources */,
 				879E16372BD43D2500D9007B /* ProfileView.swift in Sources */,
+				876E812F2BD6AB220070CBB1 /* FriendsView.swift in Sources */,
+				876E812D2BD6AB130070CBB1 /* CalenderView.swift in Sources */,
 				879E16352BD4399800D9007B /* RegistrationView.swift in Sources */,
 				879E16392BD43E9800D9007B /* SettingsRowView.swift in Sources */,
+				876E812B2BD6AB090070CBB1 /* DailyView.swift in Sources */,
 				879E164D2BD55F0000D9007B /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

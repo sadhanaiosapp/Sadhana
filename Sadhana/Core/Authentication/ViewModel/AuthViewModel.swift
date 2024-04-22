@@ -50,7 +50,7 @@ class AuthViewModel: ObservableObject {
     
     func signOut() {
         do {
-            try Auth.auth().signOut() //signs out user in backend
+            try Auth.auth().signOut()
             self.userSession = nil //switches controller view back to log-in
             self.currentUser = nil //clears user information
         } catch {
@@ -59,7 +59,7 @@ class AuthViewModel: ObservableObject {
     }
     
     func deleteAccount() {
-        print("Deleting account...")
+        //IMPLEMENT LATER
     }
     
     func fetchUser() async {
