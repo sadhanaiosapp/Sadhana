@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAEUfd0X8II90H38AVbmWzDeaBBdV2cKAg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>382981944484</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>sadhana.Sadhana</string>
+	<key>PROJECT_ID</key>
+	<string>sadhana-8a329</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sadhana-8a329.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:382981944484:ios:d4c10f0a75d0b42e7d6231</string>
+</dict>
+</plist>
