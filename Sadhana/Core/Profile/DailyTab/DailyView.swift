@@ -9,10 +9,11 @@ struct DailyView: View {
         if let user = viewModel.currentUser {
             NavigationStack {
                 VStack() {
-                    List(user.practices) { item in
-                        ToDoListItemView(item: item)
+                    List {
+                        ForEach(user.practices.indices, id: \.self) { index in
+                            ToDoListItemView(item: user.practices[index], index: index)
+                        }
                     }
-                    .listStyle(PlainListStyle())
                 }
                 .navigationTitle("Daily Sadhana")
                 .toolbar(content:  {

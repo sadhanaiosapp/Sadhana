@@ -30,6 +30,9 @@ struct NewSadhanaView: View {
                 Button {
                     Task {
                         do {
+                            let defaults = UserDefaults.standard
+                            defaults.set(false, forKey: practiceName)
+                            
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
                                 .setData(["frequency": frequency, "mandala": mandala, "count": "0"])

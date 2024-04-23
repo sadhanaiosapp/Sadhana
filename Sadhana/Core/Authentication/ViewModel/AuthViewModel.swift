@@ -17,6 +17,7 @@ class AuthViewModel: ObservableObject {
         Task {
             await fetchUser()
             await fetchPractices()
+            await checkForNewDay()
         }
     }
     
@@ -82,12 +83,54 @@ class AuthViewModel: ObservableObject {
         var practices = [ToDoListItem].self()
         if snapshot != nil {
             for document in snapshot!.documents {
-                var data = document.data()
-                var item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String,
+                let data = document.data()
+                let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String,
                                         mandala: data["mandala"] as! String, count: data["count"] as! String)
                 practices.append(item)
             }
             self.currentUser?.practices = practices
+        }
+    }
+    
+    func checkForNewDay() async {
+        guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
+            await resetAndUpdate()
+            return
+        }
+                
+        let calendar = Calendar.current
+        let currentDate = Date()
+                
+        if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
+            Task {
+                await resetAndUpdate()
+            }
+        }
+    }
+    
+    func resetAndUpdate() async {
+        
+        for index in currentUser!.practices.indices {
+            let defaults = UserDefaults.standard
+            let practice = currentUser!.practices[index]
+            let isDone = defaults.bool(forKey: practice.id)
+            
+            if (isDone) {
+                var temp = Int(practice.count)
+                temp = temp! + 1
+                currentUser!.practices[index].count = String(temp!)
+
+                do {
+                    try await Firestore.firestore().collection("users").document(currentUser!.id)
+                        .collection("practices").document(practice.id)
+                        .updateData(["count": String(temp!)])
+                } catch {
+                    print(error.localizedDescription)
+                }
+
+            }
+            
+            defaults.set(false, forKey: practice.id)
         }
     }
 }
