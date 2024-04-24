@@ -42,20 +42,36 @@ struct CalenderView: View {
                     Spacer()
                 }
                 
-                //Day Selection
+                //Days of the Week
                 HStack {
+                    Spacer()
                     ForEach(days, id:\.self) { day in
                         Text(day)
                             .font(.system(size: 12, weight: .medium))
-                            .frame(width: nil)
+                        
+                        Spacer()
                     }
                 }
                 
+                //Days
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 20) {
                     ForEach(fetchDates()) { value in
                         ZStack {
                             if value.day != -1 {
-                                Text("\(value.day)")
+                                Button {
+                                    print(value.date)
+                                } label: {
+                                    VStack {
+                                        Text("\(value.day)")
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.black)
+                                        
+                                        Circle()
+                                            .frame(width: 8, height: 8)
+                                            .foregroundColor(.green)
+                                    }
+                                }
+                                
                             } else {
                                 Text("")
                             }
@@ -64,6 +80,15 @@ struct CalenderView: View {
                     }
                 }
                 .padding()
+                
+                //Practices
+                VStack {
+                    //ForEach(fetchPracticesForDay())
+                    //create a collection "calendar" in each user, each document title should be a date. depending on the user's selected date
+                    //we fetch the practices completed and not completed
+                    //daily we add a new document to that collection with all the user's practices and whether or not they have finished it in that day
+                    //we simply retrieve that here in fetchPracticesForDay()
+                }
             }
             .onChange(of: selectedMonth) { _ in
                 selectedDate = fetchSelectedMonth()
@@ -138,5 +163,11 @@ extension Date {
         }
         
         return dates
+    }
+    
+    func string() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyy"
+        return formatter.string(from: self)
     }
 }

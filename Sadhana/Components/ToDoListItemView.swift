@@ -47,9 +47,9 @@ struct ToDoListItemView: View {
         }
     }
 }
-
-struct ToDoListItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ToDoListItemView(item: ToDoListItem(id: "Shoonya", frequency: "2", mandala: "40", count: "0"), index: 0)
-    }
-}
+//
+//struct ToDoListItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ToDoListItemView(item: ToDoListItem(id: "Shoonya", frequency: "2", mandala: "40", count: "0"), index: 0)
+//    }
+//}

@@ -95,41 +95,72 @@ class AuthViewModel: ObservableObject {
     func checkForNewDay() async {
         let currentDate = Date()
     
-        guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
-            return
-        }
+//        guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
+//            return
+//        }
+        UserDefaults.standard.set(currentDate, forKey: "lastDate")
+        var isDone = resetSadhana()
+        await updateFirebase(lastDay: currentDate.string(), isDone: isDone)
         
-        let calendar = Calendar.current
-        
-        if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
-            UserDefaults.standard.set(currentDate, forKey: "lastDate")
-            await resetAndUpdate()
-        }
+//        let calendar = Calendar.current
+//
+//        if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
+//            UserDefaults.standard.set(currentDate, forKey: "lastDate")
+//            await resetAndUpdate(lastDay: lastDate.string())
+//        }
     }
-
-    func resetAndUpdate() async {
-        
+    
+    func resetSadhana() -> [Bool] {
+        //reset all sadhanas to not done
+        var isDone: [Bool] = []
         for index in currentUser!.practices.indices {
             let defaults = UserDefaults.standard
             let practice = currentUser!.practices[index]
-            let isDone = defaults.bool(forKey: practice.id)
+            if defaults.bool(forKey: practice.id) == true {
+                isDone.append(true)
+            } else {
+                isDone.append(false)
+            }
+            UserDefaults.standard.set(false, forKey: practice.id)
+        }
+        return isDone
+    }
+
+    func updateFirebase(lastDay: String, isDone: [Bool]) async {
+        let defaults = UserDefaults.standard
+        let formattedDate = lastDay.replacingOccurrences(of: "/", with: ".")
+        for index in currentUser!.practices.indices {
+            let practice = currentUser!.practices[index]
             
-            if (isDone) {
+            if isDone[index] == true {
                 var temp = Int(practice.count)
                 temp = temp! + 1
                 currentUser!.practices[index].count = String(temp!)
 
                 do {
+                    //update counts in firebase for previous day
                     try await Firestore.firestore().collection("users").document(currentUser!.id)
                         .collection("practices").document(practice.id)
                         .updateData(["count": String(temp!)])
+                    
+                    //update calendar collection
+                    try await Firestore.firestore().collection("users").document(currentUser!.id)
+                        .collection("calendar").document(formattedDate)
+                        .updateData([practice.id: true])
                 } catch {
                     print(error.localizedDescription)
                 }
-
             }
             
-            defaults.set(false, forKey: practice.id)
+            else {
+                do {
+                    try await Firestore.firestore().collection("users").document(currentUser!.id)
+                        .collection("calendar").document(formattedDate)
+                        .updateData([practice.id: false])
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
