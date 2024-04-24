@@ -93,21 +93,20 @@ class AuthViewModel: ObservableObject {
     }
     
     func checkForNewDay() async {
+        let currentDate = Date()
+    
         guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
-            await resetAndUpdate()
             return
         }
-                
+        
         let calendar = Calendar.current
-        let currentDate = Date()
-                
+        
         if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
-            Task {
-                await resetAndUpdate()
-            }
+            UserDefaults.standard.set(currentDate, forKey: "lastDate")
+            await resetAndUpdate()
         }
     }
-    
+
     func resetAndUpdate() async {
         
         for index in currentUser!.practices.indices {
