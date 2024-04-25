@@ -5,8 +5,17 @@ struct FriendsView: View {
     
     var body: some View {
         if let user = viewModel.currentUser {
-            Text("hello world")
-                .foregroundColor(Color(.systemGreen))
+            NavigationStack {
+                ScrollView(.vertical, showsIndicators: false) {
+                    
+                }
+                .refreshable {
+                    //MARK; Refresh User Data
+                    
+                }
+                .navigationTitle("My Profile")
+                .toolbar { }
+            }
         }
     }
 }

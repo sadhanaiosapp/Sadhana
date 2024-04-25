@@ -69,6 +69,7 @@ class AuthViewModel: ObservableObject {
         if let userData = snapshot.data(){
             let user = User(id: userData["id"] as? String ?? "", fullname: userData["fullname"] as? String ?? "",  email: userData["email"] as? String ?? "")
             self.currentUser = user
+            UserDefaults.standard.set(user.id, forKey: "user")
         } else {
             self.currentUser = nil
         }
@@ -95,19 +96,17 @@ class AuthViewModel: ObservableObject {
     func checkForNewDay() async {
         let currentDate = Date()
     
-//        guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
-//            return
-//        }
-        UserDefaults.standard.set(currentDate, forKey: "lastDate")
-        var isDone = resetSadhana()
-        await updateFirebase(lastDay: currentDate.string(), isDone: isDone)
-        
-//        let calendar = Calendar.current
-//
-//        if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
-//            UserDefaults.standard.set(currentDate, forKey: "lastDate")
-//            await resetAndUpdate(lastDay: lastDate.string())
-//        }
+        guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
+            return
+        }
+
+        let calendar = Calendar.current
+
+        if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
+            UserDefaults.standard.set(currentDate, forKey: "lastDate")
+            let isDone = resetSadhana()
+            await updateFirebase(lastDay: lastDate.string(), isDone: isDone)
+        }
     }
     
     func resetSadhana() -> [Bool] {
@@ -127,7 +126,6 @@ class AuthViewModel: ObservableObject {
     }
 
     func updateFirebase(lastDay: String, isDone: [Bool]) async {
-        let defaults = UserDefaults.standard
         let formattedDate = lastDay.replacingOccurrences(of: "/", with: ".")
         for index in currentUser!.practices.indices {
             let practice = currentUser!.practices[index]
@@ -156,11 +154,12 @@ class AuthViewModel: ObservableObject {
                 do {
                     try await Firestore.firestore().collection("users").document(currentUser!.id)
                         .collection("calendar").document(formattedDate)
-                        .updateData([practice.id: false])
+                        .setData([practice.id: false])
                 } catch {
                     print(error.localizedDescription)
                 }
             }
         }
     }
+    
 }

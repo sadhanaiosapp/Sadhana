@@ -11,6 +11,7 @@ import Firebase
 @main
 struct SadhanaApp: App {
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var calendarViewModel = CalendarViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -20,6 +21,7 @@ struct SadhanaApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .environmentObject(calendarViewModel)
         }
     }
 }

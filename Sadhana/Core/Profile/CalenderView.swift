@@ -1,10 +1,12 @@
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 struct CalenderView: View {
     let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
-    @State var selectedMonth = 0
-    @State var selectedDate = Date()
+
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var calendarViewModel: CalendarViewModel
     
     var body: some View {
         if let user = viewModel.currentUser {
@@ -14,29 +16,29 @@ struct CalenderView: View {
                     Spacer()
                     Button {
                         withAnimation {
-                            selectedMonth -= 1
+                            calendarViewModel.selectedMonth -= 1
                         }
                     } label: {
                         Image(systemName: "lessthan")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 14, height: 26)
+                            .frame(width: 12, height: 18)
                     }
                     
                     Spacer()
-                    Text(selectedDate.monthAndYear())
+                    Text(calendarViewModel.selectedDate.monthAndYear())
                         .font(.title2)
                     Spacer()
                     
                     Button {
                         withAnimation {
-                            selectedMonth += 1
+                            calendarViewModel.selectedMonth += 1
                         }
                     } label: {
                         Image(systemName: "greaterthan")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 14, height: 26)
+                            .frame(width: 12, height: 18)
                     }
                     
                     Spacer()
@@ -55,11 +57,15 @@ struct CalenderView: View {
                 
                 //Days
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 20) {
-                    ForEach(fetchDates()) { value in
+                    ForEach(calendarViewModel.dates) { value in
                         ZStack {
                             if value.day != -1 {
                                 Button {
-                                    print(value.date)
+                                    calendarViewModel.selectedDate = value.date
+                                    Task {
+                                        await calendarViewModel.fetchPracticesForCalendarDate(user: user, selectedDate: calendarViewModel.selectedDate)
+                                    }
+                                    
                                 } label: {
                                     VStack {
                                         Text("\(value.day)")
@@ -68,7 +74,7 @@ struct CalenderView: View {
                                         
                                         Circle()
                                             .frame(width: 8, height: 8)
-                                            .foregroundColor(.green)
+                                            .foregroundColor(value.color)
                                     }
                                 }
                                 
@@ -81,39 +87,17 @@ struct CalenderView: View {
                 }
                 .padding()
                 
-                //Practices
                 VStack {
-                    //ForEach(fetchPracticesForDay())
-                    //create a collection "calendar" in each user, each document title should be a date. depending on the user's selected date
-                    //we fetch the practices completed and not completed
-                    //daily we add a new document to that collection with all the user's practices and whether or not they have finished it in that day
-                    //we simply retrieve that here in fetchPracticesForDay()
+                    ForEach(calendarViewModel.views) { view in
+                        CalendarItemView(id: view.id, isFinished: view.isFinished)
+                    }
                 }
+                
             }
-            .onChange(of: selectedMonth) { _ in
-                selectedDate = fetchSelectedMonth()
+            .onChange(of: calendarViewModel.selectedMonth) { _ in
+                calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
             }
         }
-    }
-    
-    
-    func fetchDates() -> [CalendarDate] {
-        let calendar = Calendar.current
-        let currentMonth = fetchSelectedMonth()
-        
-        var dates = currentMonth.datesOfMonth().map({CalendarDate(day: calendar.component(.day, from: $0), date: $0)})
-        let firstDayOfWeek = calendar.component(.weekday, from: dates.first?.date ?? Date())
-        
-        for _ in 0..<firstDayOfWeek - 1 {
-            dates.insert(CalendarDate(day: -1, date: Date()), at: 0)
-        }
-        return dates
-    }
-    
-    func fetchSelectedMonth() -> Date {
-        let calendar = Calendar.current
-        let month = calendar.date(byAdding: .month, value: selectedMonth, to: Date())
-        return month!
     }
 }
 
@@ -121,13 +105,14 @@ struct CalendarDate: Identifiable {
     let id = UUID()
     var day: Int
     var date: Date
+    var color: Color
 }
 
-struct CalenderView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalenderView()
-    }
-}
+//struct CalenderView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CalenderView()
+//    }
+//}
 
 extension Date {
     
@@ -169,5 +154,18 @@ extension Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyy"
         return formatter.string(from: self)
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var rgb: UInt64 = 0
+        
+        Scanner(string: hex).scanHexInt64(&rgb)
+        
+        self.init(red: Double((rgb & 0xFF0000) >> 16) / 255.0,
+                  green: Double((rgb & 0x00FF00) >> 8) / 255.0,
+                  blue: Double(rgb & 0x0000FF) / 255.0)
     }
 }

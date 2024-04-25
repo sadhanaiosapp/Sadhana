@@ -11,22 +11,22 @@ struct ContentView: View {
                 TabView {
                     DailyView()
                         .tabItem{
-                            Label("Daily", systemImage: "1.circle")
+                            Label("Daily", systemImage: "house.fill")
                         }
                     
                     CalenderView()
                         .tabItem{
-                            Label("Calender", systemImage: "2.circle")
+                            Label("Calender", systemImage: "calendar")
                         }
                     
                     FriendsView()
                         .tabItem{
-                            Label("Friends", systemImage: "3.circle")
+                            Label("Friends", systemImage: "person.3.fill")
                         }
                     
                     ProfileView()
                         .tabItem{
-                            Label("Profile", systemImage: "4.circle")
+                            Label("Profile", systemImage: "person.circle.fill")
                         }
                 }
                 

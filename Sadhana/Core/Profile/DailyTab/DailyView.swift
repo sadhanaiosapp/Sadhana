@@ -14,6 +14,7 @@ struct DailyView: View {
                             ToDoListItemView(item: user.practices[index], index: index)
                         }
                     }
+
                 }
                 .navigationTitle("Daily Sadhana")
                 .toolbar(content:  {
