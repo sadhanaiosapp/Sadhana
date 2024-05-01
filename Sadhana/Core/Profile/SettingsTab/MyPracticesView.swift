@@ -4,24 +4,33 @@ import FirebaseFirestore
 
 struct MyPracticesView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    
+    @State private var isNextViewPresented = false
     
     var body: some View {
         if let user = viewModel.currentUser {
             NavigationStack {
                 VStack {
                     ForEach(user.practices) { practice in
-                        NavigationLink {
-                            SettingsIndividualPractice(displayText: practice.id)
+                        Button {
+                            Task {
+                                isNextViewPresented = true
+                                await settingsViewModel.fetchPracticeData(practiceID: practice.id)
+                            }
                         } label: {
-                            SettingsMyPracticeNavigationLink(displayText: practice.id)
+                            SettingsMyPracticeNavigationLink(practiceID: practice.id)
                         }
-                        .padding(.init(top: 0, leading: 20, bottom: 20, trailing: 20))
+                        .sheet(isPresented: $isNextViewPresented) {
+                            SettingsIndividualPractice()
+                        }
                     }
                 }
                 .padding(.top, 20)
                 
                 Spacer()
             }
+            .navigationTitle("My Practices")
         }
     }
 }

@@ -8,20 +8,32 @@
 import SwiftUI
 
 struct SettingsMyPracticeNavigationLink: View {
-    var displayText: String
-        
+    var practiceID: String
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    
+    
     var body: some View {
-        Text(displayText)
+        
+        Text(practiceID)
             .foregroundColor(.white)
             .padding()
-            .background(Color.blue)
-            .cornerRadius(10)
-            
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                    .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
+            )
+            .padding([.leading, .trailing], 16)
+        
     }
 }
 
 struct SettingsMyPracticeNavigationLink_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsMyPracticeNavigationLink(displayText: "Shakti Chalana Kriya")
+        SettingsMyPracticeNavigationLink(practiceID: "Shakti Chalana Kriya")
     }
 }
