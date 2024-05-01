@@ -17,6 +17,10 @@ struct CalenderView: View {
                     Button {
                         withAnimation {
                             calendarViewModel.selectedMonth -= 1
+                            calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
+                            Task {
+                                await calendarViewModel.fetchDates()
+                            }
                         }
                     } label: {
                         Image(systemName: "lessthan")
@@ -33,6 +37,10 @@ struct CalenderView: View {
                     Button {
                         withAnimation {
                             calendarViewModel.selectedMonth += 1
+                            calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
+                            Task {
+                                await calendarViewModel.fetchDates()
+                            }
                         }
                     } label: {
                         Image(systemName: "greaterthan")
@@ -57,7 +65,7 @@ struct CalenderView: View {
                 
                 //Days
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 20) {
-                    ForEach(calendarViewModel.dates) { value in
+                    ForEach(calendarViewModel.dates, id: \.id) { value in
                         ZStack {
                             if value.day != -1 {
                                 Button {
@@ -92,10 +100,6 @@ struct CalenderView: View {
                         CalendarItemView(id: view.id, isFinished: view.isFinished)
                     }
                 }
-                
-            }
-            .onChange(of: calendarViewModel.selectedMonth) { _ in
-                calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
             }
         }
     }
@@ -159,10 +163,10 @@ extension Date {
 
 extension Color {
     init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        let color = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var rgb: UInt64 = 0
         
-        Scanner(string: hex).scanHexInt64(&rgb)
+        Scanner(string: color).scanHexInt64(&rgb)
         
         self.init(red: Double((rgb & 0xFF0000) >> 16) / 255.0,
                   green: Double((rgb & 0x00FF00) >> 8) / 255.0,

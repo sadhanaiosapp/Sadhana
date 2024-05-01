@@ -6,6 +6,7 @@ struct NewSadhanaView: View {
     @State var practiceName = ""
     @State var frequency = ""
     @State var mandala = ""
+    @State var mandalaCount = "0"
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -35,7 +36,7 @@ struct NewSadhanaView: View {
                             
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
-                                .setData(["frequency": frequency, "mandala": mandala, "count": "0"])
+                                .setData(["frequency": frequency, "mandala": mandala, "mandalaCount": "0", "count": "0"])
                             await viewModel.fetchPractices()
                         } catch {
                             print("\(error.localizedDescription)")

@@ -35,6 +35,11 @@
 		879E164D2BD55F0000D9007B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E164C2BD55F0000D9007B /* AuthViewModel.swift */; };
 		87DB55B22BD9E6FE009A77EF /* CalendarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */; };
 		87DB55B42BDAC591009A77EF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */; };
+		87FAA4722BE28FF6003C451D /* MyPracticesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4712BE28FF6003C451D /* MyPracticesView.swift */; };
+		87FAA4742BE29003003C451D /* MyFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4732BE29003003C451D /* MyFriendsView.swift */; };
+		87FAA4762BE29156003C451D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4752BE29156003C451D /* SettingsViewModel.swift */; };
+		87FAA4782BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4772BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift */; };
+		87FAA47C2BE29474003C451D /* SettingsIndividualPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA47B2BE29474003C451D /* SettingsIndividualPractice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +88,11 @@
 		879E164C2BD55F0000D9007B /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItemView.swift; sourceTree = "<group>"; };
 		87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		87FAA4712BE28FF6003C451D /* MyPracticesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticesView.swift; sourceTree = "<group>"; };
+		87FAA4732BE29003003C451D /* MyFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsView.swift; sourceTree = "<group>"; };
+		87FAA4752BE29156003C451D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		87FAA4772BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMyPracticeNavigationLink.swift; sourceTree = "<group>"; };
+		87FAA47B2BE29474003C451D /* SettingsIndividualPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsIndividualPractice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +209,7 @@
 				879E16382BD43E9800D9007B /* SettingsRowView.swift */,
 				876E813A2BD6E0800070CBB1 /* ToDoListItemView.swift */,
 				87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */,
+				87FAA4772BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 		879E162B2BD430DD00D9007B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				879E164E2BD55F4A00D9007B /* ViewModel */,
 				879E162E2BD4311900D9007B /* Authentication */,
 				879E162F2BD4312300D9007B /* Profile */,
 				879E162D2BD4310400D9007B /* Root */,
@@ -233,8 +245,8 @@
 		879E162E2BD4311900D9007B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				879E164E2BD55F4A00D9007B /* ViewModel */,
-				879E164A2BD55ED800D9007B /* View */,
+				879E16342BD4399800D9007B /* RegistrationView.swift */,
+				879E16302BD4316500D9007B /* LogInView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -245,18 +257,9 @@
 				876E81302BD6BA740070CBB1 /* DailyTab */,
 				876E812C2BD6AB130070CBB1 /* CalenderView.swift */,
 				876E812E2BD6AB220070CBB1 /* FriendsView.swift */,
-				879E16362BD43D2500D9007B /* ProfileView.swift */,
+				87FAA4702BE28FCA003C451D /* SettingsTab */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		879E164A2BD55ED800D9007B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				879E16342BD4399800D9007B /* RegistrationView.swift */,
-				879E16302BD4316500D9007B /* LogInView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		879E164E2BD55F4A00D9007B /* ViewModel */ = {
@@ -264,8 +267,20 @@
 			children = (
 				879E164C2BD55F0000D9007B /* AuthViewModel.swift */,
 				87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */,
+				87FAA4752BE29156003C451D /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		87FAA4702BE28FCA003C451D /* SettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+				879E16362BD43D2500D9007B /* ProfileView.swift */,
+				87FAA4712BE28FF6003C451D /* MyPracticesView.swift */,
+				87FAA4732BE29003003C451D /* MyFriendsView.swift */,
+				87FAA47B2BE29474003C451D /* SettingsIndividualPractice.swift */,
+			);
+			path = SettingsTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,8 +423,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87FAA47C2BE29474003C451D /* SettingsIndividualPractice.swift in Sources */,
 				879E16312BD4316500D9007B /* LogInView.swift in Sources */,
 				879E16332BD4324D00D9007B /* InputView.swift in Sources */,
+				87FAA4782BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift in Sources */,
+				87FAA4742BE29003003C451D /* MyFriendsView.swift in Sources */,
+				87FAA4722BE28FF6003C451D /* MyPracticesView.swift in Sources */,
 				8729FE882BD2E8580076296B /* ContentView.swift in Sources */,
 				87DB55B22BD9E6FE009A77EF /* CalendarItemView.swift in Sources */,
 				8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */,
@@ -426,6 +445,7 @@
 				876E813B2BD6E0800070CBB1 /* ToDoListItemView.swift in Sources */,
 				876E81322BD6BB420070CBB1 /* NewSadhanaView.swift in Sources */,
 				879E164D2BD55F0000D9007B /* AuthViewModel.swift in Sources */,
+				87FAA4762BE29156003C451D /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -60,7 +60,17 @@ class AuthViewModel: ObservableObject {
     }
     
     func deleteAccount() {
-        //IMPLEMENT LATER
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+            if let error = error {
+                print("DEBUG: Account Deletion Error is \(error.localizedDescription)")
+            }
+                
+            else {
+                self.userSession = nil
+                self.currentUser = nil
+            }
+        }
     }
     
     func fetchUser() async {
@@ -85,8 +95,8 @@ class AuthViewModel: ObservableObject {
         if snapshot != nil {
             for document in snapshot!.documents {
                 let data = document.data()
-                let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String,
-                                        mandala: data["mandala"] as! String, count: data["count"] as! String)
+                let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandala: data["mandala"] as! String,
+                                        mandalaCount: data["mandalaCount"] as! String, count: data["count"] as! String)
                 practices.append(item)
             }
             self.currentUser?.practices = practices
@@ -103,9 +113,10 @@ class AuthViewModel: ObservableObject {
         let calendar = Calendar.current
 
         if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
+            print("it's a different day!")
             UserDefaults.standard.set(currentDate, forKey: "lastDate")
             let isDone = resetSadhana()
-            await updateFirebase(lastDay: lastDate.string(), isDone: isDone)
+            await updateFirebase(lastDay: lastDate, isDone: isDone)
         }
     }
     
@@ -125,41 +136,57 @@ class AuthViewModel: ObservableObject {
         return isDone
     }
 
-    func updateFirebase(lastDay: String, isDone: [Bool]) async {
-        let formattedDate = lastDay.replacingOccurrences(of: "/", with: ".")
+    func updateFirebase(lastDay: Date, isDone: [Bool]) async {
+        let formattedDate = lastDay.string().replacingOccurrences(of: "/", with: ".")
+        var calendarDict: [String: Bool] = [:]
+        var dotsDict: [String: String] = [:]
+        
         for index in currentUser!.practices.indices {
             let practice = currentUser!.practices[index]
             
             if isDone[index] == true {
-                var temp = Int(practice.count)
-                temp = temp! + 1
-                currentUser!.practices[index].count = String(temp!)
-
+                var oldPracticeCount = Int(practice.count)
+                var oldMandalaCount = Int(practice.mandalaCount)
+                
+                oldPracticeCount = oldPracticeCount! + 1
+                currentUser!.practices[index].count = String(oldPracticeCount!)
+                if practice.mandala != "" {
+                    oldMandalaCount = oldMandalaCount! + 1
+                    currentUser!.practices[index].mandalaCount = String(oldMandalaCount!)
+                }
+                
                 do {
                     //update counts in firebase for previous day
                     try await Firestore.firestore().collection("users").document(currentUser!.id)
                         .collection("practices").document(practice.id)
-                        .updateData(["count": String(temp!)])
+                        .updateData(["count": String(oldPracticeCount!), "mandalaCount": String(oldMandalaCount!)])
                     
-                    //update calendar collection
-                    try await Firestore.firestore().collection("users").document(currentUser!.id)
-                        .collection("calendar").document(formattedDate)
-                        .updateData([practice.id: true])
+                    calendarDict[practice.id] = true
+                    dotsDict[formattedDate] = "#00FF00"
                 } catch {
                     print(error.localizedDescription)
                 }
             }
             
             else {
-                do {
-                    try await Firestore.firestore().collection("users").document(currentUser!.id)
-                        .collection("calendar").document(formattedDate)
-                        .setData([practice.id: false])
-                } catch {
-                    print(error.localizedDescription)
-                }
+                calendarDict[practice.id] = false
+                dotsDict[formattedDate] = "#FF5733"
             }
         }
+        
+        do {
+            //update calendar collection
+            try await Firestore.firestore().collection("users").document(currentUser!.id)
+                .collection("calendar").document(formattedDate)
+                .setData(calendarDict)
+            
+            //update dots collection
+            try await Firestore.firestore().collection("users").document(currentUser!.id)
+                .collection("dots").document(lastDay.monthAndYear())
+                .updateData([formattedDate: dotsDict[formattedDate]!])
+        } catch {
+            print(error.localizedDescription)
+        }
     }
-    
 }
+

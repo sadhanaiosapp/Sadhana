@@ -6,13 +6,7 @@ struct ToDoListItemView: View {
     var item: ToDoListItem
     var index: Int
     @EnvironmentObject var viewModel: AuthViewModel
-    
-//    init() {
-//        let practice = (viewModel.currentUser?.practices[index].id)!
-//        if(UserDefaults.standard.bool(forKey: practice)) {
-//            viewModel.currentUser?.practices[index].isDone = true
-//        }
-//    }
+
     
     var body: some View {
         
@@ -25,6 +19,14 @@ struct ToDoListItemView: View {
                     Text("Daily Frequency: \(item.frequency)")
                         .font(.footnote)
                         .foregroundColor(Color(.secondaryLabel))
+                    
+                    if item.mandala != "" {
+                        Text("Mandala: \(item.mandalaCount) / \(item.mandala)")
+                            .font(.footnote)
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
+                    
+                    
                 }
                 
                 Spacer()
