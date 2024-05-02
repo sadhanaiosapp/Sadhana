@@ -34,19 +34,19 @@ struct InfoView: View {
     var body: some View {
         HStack {
             Text(title)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .font(.headline)
             
             Spacer()
             
             Text(value)
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .font(.body)
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .fill(LinearGradient(gradient: Gradient(colors: [Color(hex: 0x79FF92), Color(hex: 0xB0F8FF)]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.white, lineWidth: 2)
@@ -54,5 +54,17 @@ struct InfoView: View {
                 .shadow(color: Color.gray.opacity(0.5), radius: 10, x: 0, y: 5)
         )
         .padding(.horizontal, 16)
+    }
+}
+
+extension Color {
+    init(hex: UInt) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xFF) / 255.0,
+            green: Double((hex >> 8) & 0xFF) / 255.0,
+            blue: Double(hex & 0xFF) / 255.0,
+            opacity: 1
+        )
     }
 }
