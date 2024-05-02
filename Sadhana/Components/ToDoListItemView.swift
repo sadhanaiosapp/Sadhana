@@ -6,6 +6,7 @@ struct ToDoListItemView: View {
     var item: ToDoListItem
     var index: Int
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var friendsViewModel: FriendsViewModel
 
     
     var body: some View {
@@ -25,8 +26,6 @@ struct ToDoListItemView: View {
                             .font(.footnote)
                             .foregroundColor(Color(.secondaryLabel))
                     }
-                    
-                    
                 }
                 
                 Spacer()
@@ -37,9 +36,16 @@ struct ToDoListItemView: View {
                 var isDone = UserDefaults.standard.bool(forKey: practice)
 
                 Button {
+                    viewModel.currentUser?.practices[index].isDone = isDone
                     viewModel.currentUser?.practices[index].isDone.toggle()
-                    isDone = (viewModel.currentUser?.practices[index].isDone) ?? false
+                    isDone = viewModel.currentUser?.practices[index].isDone ?? false
                     UserDefaults.standard.set(isDone, forKey: practice)
+                    
+                    let name = viewModel.currentUser?.fullname
+                    let email = viewModel.currentUser?.email
+                    Task {
+                        await friendsViewModel.postSadhanaUpdate(isDone: isDone, time: Timestamp.init(), name: name!, practice: practice, email: email!)
+                    }
                 } label: {
                     Image(systemName: isDone ? "checkmark.circle.fill" : "circle")
                 }

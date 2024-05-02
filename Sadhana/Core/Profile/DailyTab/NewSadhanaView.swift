@@ -37,7 +37,7 @@ struct NewSadhanaView: View {
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
                                 .setData(["frequency": frequency, "mandala": mandala, "mandalaCount": "0", "count": "0"])
-                            await viewModel.fetchPractices()
+                            await viewModel.fetchUser()
                         } catch {
                             print("\(error.localizedDescription)")
                         }
@@ -45,19 +45,11 @@ struct NewSadhanaView: View {
                     }
                     
                 } label: {
-                    HStack {
-                        Text("SAVE")
-                            .fontWeight(.semibold)
-                        Image(systemName: "arrow.right")
-                    }
-                    .foregroundColor(Color(.white))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                    BottomBlueButton(text: "SAVE", image: "arrow.right")
                 }
-                .background(Color(.systemBlue))
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)
-                .cornerRadius(10)
-                .padding(.bottom, 30)
+
             }
             .navigationTitle("New Sadhana")
         }

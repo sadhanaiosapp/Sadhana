@@ -16,7 +16,6 @@ class AuthViewModel: ObservableObject {
         
         Task {
             await fetchUser()
-            await fetchPractices()
             await checkForNewDay()
         }
     }
@@ -37,11 +36,7 @@ class AuthViewModel: ObservableObject {
             self.userSession = result.user
             let user = User(id: result.user.uid, fullname: fullname, email: email)
             
-            let jsonEncodedUser = try JSONEncoder().encode(user)
-            guard let userDictionary = try JSONSerialization.jsonObject(with: jsonEncodedUser, options: []) as? [String: Any] else {
-                fatalError("Failed to convert JSON data to dictionary")
-            }
-            try await Firestore.firestore().collection("users").document(user.id).setData(userDictionary)
+            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email])
             
             await fetchUser()
         } catch {
@@ -76,31 +71,28 @@ class AuthViewModel: ObservableObject {
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        
         if let userData = snapshot.data(){
             let user = User(id: userData["id"] as? String ?? "", fullname: userData["fullname"] as? String ?? "",  email: userData["email"] as? String ?? "")
             self.currentUser = user
             UserDefaults.standard.set(user.id, forKey: "user")
+            
+            //FETCH USER PRACTICES - COULD BE THE REASON FOR SLOW BOOTUP
+            let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices").getDocuments()
+            
+            if snapshot != nil {
+                for document in snapshot!.documents {
+                    let data = document.data()
+                    let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandala: data["mandala"] as! String,
+                                            mandalaCount: data["mandalaCount"] as! String, count: data["count"] as! String)
+                    self.currentUser?.practices.append(item)
+                }
+            }
         } else {
             self.currentUser = nil
         }
         
-        print("Fetching user data ... Current user is \(String(describing: self.currentUser))")
-    }
-    
-    func fetchPractices() async {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices").getDocuments()
-        
-        var practices = [ToDoListItem].self()
-        if snapshot != nil {
-            for document in snapshot!.documents {
-                let data = document.data()
-                let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandala: data["mandala"] as! String,
-                                        mandalaCount: data["mandalaCount"] as! String, count: data["count"] as! String)
-                practices.append(item)
-            }
-            self.currentUser?.practices = practices
-        }
+        print("Fetching user data ... Current user is \(String(describing: self.currentUser?.email))")
     }
     
     func checkForNewDay() async {
@@ -112,6 +104,7 @@ class AuthViewModel: ObservableObject {
 
         let calendar = Calendar.current
 
+        //NEW DAY: RESET CHECKLIST TO NOT DONE && UPDATES FIREBASE WITH NEW COUNTS
         if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
             print("it's a different day!")
             UserDefaults.standard.set(currentDate, forKey: "lastDate")
@@ -121,7 +114,6 @@ class AuthViewModel: ObservableObject {
     }
     
     func resetSadhana() -> [Bool] {
-        //reset all sadhanas to not done
         var isDone: [Bool] = []
         for index in currentUser!.practices.indices {
             let defaults = UserDefaults.standard

@@ -23,7 +23,6 @@ struct SettingsIndividualPractice: View {
             Spacer()
         }
         .padding()
-
     }
 }
 
@@ -46,7 +45,7 @@ struct InfoView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(hex: 0x79FF92), Color(hex: 0xB0F8FF)]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .fill(LinearGradient(gradient: Gradient(colors: [Color(hex: "#79FF92"), Color(hex: "#B0F8FF")]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.white, lineWidth: 2)
@@ -57,14 +56,3 @@ struct InfoView: View {
     }
 }
 
-extension Color {
-    init(hex: UInt) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xFF) / 255.0,
-            green: Double((hex >> 8) & 0xFF) / 255.0,
-            blue: Double(hex & 0xFF) / 255.0,
-            opacity: 1
-        )
-    }
-}
