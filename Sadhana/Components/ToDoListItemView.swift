@@ -41,10 +41,12 @@ struct ToDoListItemView: View {
                     isDone = viewModel.currentUser?.practices[index].isDone ?? false
                     UserDefaults.standard.set(isDone, forKey: practice)
                     
+                    let uid = viewModel.currentUser?.id
                     let name = viewModel.currentUser?.fullname
                     let email = viewModel.currentUser?.email
+                    let statement = "\(String(describing: name)) finished \(practice)"
                     Task {
-                        await friendsViewModel.postSadhanaUpdate(isDone: isDone, time: Timestamp.init(), name: name!, practice: practice, email: email!)
+                        await friendsViewModel.postSadhanaUpdate(isDone: isDone, time: Timestamp.init(), uid: uid!, email: email!, statement: statement)
                     }
                 } label: {
                     Image(systemName: isDone ? "checkmark.circle.fill" : "circle")

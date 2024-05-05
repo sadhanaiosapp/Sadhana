@@ -15,7 +15,8 @@ struct FriendsView: View {
                 .refreshable {
                     //Refresh User Data
                     Task {
-                        await friendsViewModel.fetchPosts()
+                        let uid = UserDefaults.standard.string(forKey: "user")
+                        await friendsViewModel.fetchPosts(uid: uid!)
                     }
                 }
                 .navigationTitle("My Friends")
@@ -32,8 +33,8 @@ struct FriendsView: View {
                     }
                 }
                 
-                Button {
-                    
+                NavigationLink {
+                    CreateNewPostView()
                 } label: {
                     BottomBlueButton(text: "New Post", image: "plus.circle")
                 }

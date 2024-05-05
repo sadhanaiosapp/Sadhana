@@ -3,10 +3,18 @@ import Firebase
 import FirebaseFirestore
 
 struct MyFriendsView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
-        VStack {
-            Text("welcome to my friends view")
+        ScrollView() {
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(settingsViewModel.friends) { friend in
+                    ProfileInitialsView(initials: friend.initials, fullname: friend.fullname, email: friend.email)
+                }
+            }
+            .padding(.top, 20)
+            .navigationTitle("My Friends")
         }
     }
 }

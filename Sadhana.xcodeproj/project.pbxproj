@@ -38,6 +38,9 @@
 		87C822972BE3E67800803712 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C822962BE3E67800803712 /* FriendsViewModel.swift */; };
 		87C822992BE3FC7500803712 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C822982BE3FC7500803712 /* PostView.swift */; };
 		87C8229B2BE3FFFC00803712 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8229A2BE3FFFC00803712 /* Post.swift */; };
+		87C8229D2BE6A54400803712 /* CreateNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8229C2BE6A54400803712 /* CreateNewPostView.swift */; };
+		87C8229F2BE7DF2500803712 /* ProfileInitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8229E2BE7DF2500803712 /* ProfileInitialsView.swift */; };
+		87C822A12BE7E00000803712 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C822A02BE7E00000803712 /* Friend.swift */; };
 		87DB55B22BD9E6FE009A77EF /* CalendarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */; };
 		87DB55B42BDAC591009A77EF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */; };
 		87FAA4722BE28FF6003C451D /* MyPracticesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4712BE28FF6003C451D /* MyPracticesView.swift */; };
@@ -96,6 +99,9 @@
 		87C822962BE3E67800803712 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		87C822982BE3FC7500803712 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		87C8229A2BE3FFFC00803712 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		87C8229C2BE6A54400803712 /* CreateNewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPostView.swift; sourceTree = "<group>"; };
+		87C8229E2BE7DF2500803712 /* ProfileInitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitialsView.swift; sourceTree = "<group>"; };
+		87C822A02BE7E00000803712 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItemView.swift; sourceTree = "<group>"; };
 		87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		87FAA4712BE28FF6003C451D /* MyPracticesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticesView.swift; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 				87FAA4772BE291FF003C451D /* SettingsMyPracticeNavigationLink.swift */,
 				87C822922BE3E48200803712 /* BottomBlueButton.swift */,
 				87C822982BE3FC7500803712 /* PostView.swift */,
+				87C8229E2BE7DF2500803712 /* ProfileInitialsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -243,6 +250,7 @@
 				879E163A2BD43FE800D9007B /* User.swift */,
 				876E81382BD6D9B60070CBB1 /* ToDoListItem.swift */,
 				87C8229A2BE3FFFC00803712 /* Post.swift */,
+				87C822A02BE7E00000803712 /* Friend.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 			children = (
 				876E812E2BD6AB220070CBB1 /* FriendsView.swift */,
 				87C822942BE3E56800803712 /* AddNewFriends.swift */,
+				87C8229C2BE6A54400803712 /* CreateNewPostView.swift */,
 			);
 			path = FriendsTab;
 			sourceTree = "<group>";
@@ -457,9 +466,11 @@
 				87DB55B22BD9E6FE009A77EF /* CalendarItemView.swift in Sources */,
 				8729FE862BD2E8580076296B /* SadhanaApp.swift in Sources */,
 				879E163B2BD43FE800D9007B /* User.swift in Sources */,
+				87C8229D2BE6A54400803712 /* CreateNewPostView.swift in Sources */,
 				87C822932BE3E48200803712 /* BottomBlueButton.swift in Sources */,
 				87DB55B42BDAC591009A77EF /* CalendarViewModel.swift in Sources */,
 				879E16372BD43D2500D9007B /* ProfileView.swift in Sources */,
+				87C8229F2BE7DF2500803712 /* ProfileInitialsView.swift in Sources */,
 				876E812F2BD6AB220070CBB1 /* FriendsView.swift in Sources */,
 				876E812D2BD6AB130070CBB1 /* CalenderView.swift in Sources */,
 				876E81392BD6D9B60070CBB1 /* ToDoListItem.swift in Sources */,
@@ -470,6 +481,7 @@
 				876E812B2BD6AB090070CBB1 /* DailyView.swift in Sources */,
 				876E813B2BD6E0800070CBB1 /* ToDoListItemView.swift in Sources */,
 				876E81322BD6BB420070CBB1 /* NewSadhanaView.swift in Sources */,
+				87C822A12BE7E00000803712 /* Friend.swift in Sources */,
 				879E164D2BD55F0000D9007B /* AuthViewModel.swift in Sources */,
 				87C822972BE3E67800803712 /* FriendsViewModel.swift in Sources */,
 				87C822992BE3FC7500803712 /* PostView.swift in Sources */,

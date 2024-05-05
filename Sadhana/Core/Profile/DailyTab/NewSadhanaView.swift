@@ -37,12 +37,14 @@ struct NewSadhanaView: View {
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
                                 .setData(["frequency": frequency, "mandala": mandala, "mandalaCount": "0", "count": "0"])
-                            await viewModel.fetchUser()
+                            
+                            viewModel.currentUser?.practices.append(ToDoListItem(id: practiceName, frequency: frequency, mandala: mandala, mandalaCount: "0", count: "0"))
                         } catch {
                             print("\(error.localizedDescription)")
                         }
-                        dismiss()
                     }
+                    
+                    dismiss()
                     
                 } label: {
                     BottomBlueButton(text: "SAVE", image: "arrow.right")

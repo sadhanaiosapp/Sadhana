@@ -35,8 +35,8 @@ class AuthViewModel: ObservableObject {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
             let user = User(id: result.user.uid, fullname: fullname, email: email)
-            
-            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email])
+            let friends: [String] = [user.id]
+            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends])
             
             await fetchUser()
         } catch {
@@ -81,6 +81,7 @@ class AuthViewModel: ObservableObject {
             let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices").getDocuments()
             
             if snapshot != nil {
+                self.currentUser?.practices = []
                 for document in snapshot!.documents {
                     let data = document.data()
                     let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandala: data["mandala"] as! String,
