@@ -15,35 +15,33 @@ struct PostView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(statement)
-                .font(.headline)
-                .foregroundColor(.black)
-                .padding(.horizontal)
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(statement)
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                
+                Text(dateString)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+                
+                Text("By \(user)")
+                    .font(.caption)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal)
+            }
+            .frame(width: UIScreen.main.bounds.width - 32)
+            .padding(.vertical, 10)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .padding(.horizontal)
+            .padding(.top, 10)
+            .padding(.bottom, 5)
             
-            Text(dateString)
-                .font(.caption)
-                .foregroundColor(.gray)
-                .padding(.horizontal)
-            
-            Text("By \(user)")
-                .font(.caption)
-                .foregroundColor(.blue)
-                .padding(.horizontal)
+            Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width - 32)
-        .padding(.vertical, 10)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-        .padding(.horizontal)
-        .padding(.top, 10)
-        .padding(.bottom, 5)
     }
 }
-
-//struct PostView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        PostView(statement: "Prameela finished Shakti Chalana Kriya", date: "11:31 a.m.", user: "Prameela Thupilli")
-//    }
-//}

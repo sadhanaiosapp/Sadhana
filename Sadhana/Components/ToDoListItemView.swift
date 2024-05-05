@@ -44,7 +44,7 @@ struct ToDoListItemView: View {
                     let uid = viewModel.currentUser?.id
                     let name = viewModel.currentUser?.fullname
                     let email = viewModel.currentUser?.email
-                    let statement = "\(String(describing: name)) finished \(practice)"
+                    let statement = "\(name!) finished \(practice)"
                     Task {
                         await friendsViewModel.postSadhanaUpdate(isDone: isDone, time: Timestamp.init(), uid: uid!, email: email!, statement: statement)
                     }

@@ -60,7 +60,7 @@ class AuthViewModel: ObservableObject {
             if let error = error {
                 print("DEBUG: Account Deletion Error is \(error.localizedDescription)")
             }
-                
+            
             else {
                 self.userSession = nil
                 self.currentUser = nil
@@ -98,13 +98,13 @@ class AuthViewModel: ObservableObject {
     
     func checkForNewDay() async {
         let currentDate = Date()
-    
+        
         guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
             return
         }
-
+        
         let calendar = Calendar.current
-
+        
         //NEW DAY: RESET CHECKLIST TO NOT DONE && UPDATES FIREBASE WITH NEW COUNTS
         if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
             print("it's a different day!")
@@ -128,7 +128,7 @@ class AuthViewModel: ObservableObject {
         }
         return isDone
     }
-
+    
     func updateFirebase(lastDay: Date, isDone: [Bool]) async {
         let formattedDate = lastDay.string().replacingOccurrences(of: "/", with: ".")
         var calendarDict: [String: Bool] = [:]
@@ -177,6 +177,14 @@ class AuthViewModel: ObservableObject {
             try await Firestore.firestore().collection("users").document(currentUser!.id)
                 .collection("dots").document(lastDay.monthAndYear())
                 .updateData([formattedDate: dotsDict[formattedDate]!])
+            
+            //reset user feed
+            let feed = try await Firestore.firestore().collection("users").document(currentUser!.id)
+                .collection("feed").getDocuments()
+            for doc in feed.documents {
+                try await doc.reference.delete()
+            }
+
         } catch {
             print(error.localizedDescription)
         }
