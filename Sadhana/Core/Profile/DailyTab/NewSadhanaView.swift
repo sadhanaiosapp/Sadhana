@@ -47,13 +47,17 @@ struct NewSadhanaView: View {
                     dismiss()
                     
                 } label: {
-                    BottomBlueButton(text: "SAVE", image: "arrow.right", color: Color(.systemBlue), textColor: Color(.white))
+                    BottomBlueButton(text: "SAVE", image: "arrow.right", color: Color(.white), textColor: Color(.systemBlue))
                 }
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)
 
             }
             .navigationTitle("New Sadhana")
+            .background{
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "#79FF92"), Color(hex: "#B0F8FF")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
+            }
         }
     }
 }
