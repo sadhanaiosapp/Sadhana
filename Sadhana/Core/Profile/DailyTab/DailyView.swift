@@ -8,13 +8,13 @@ struct DailyView: View {
     var body: some View {
         if let user = viewModel.currentUser {
             NavigationStack {
-                VStack() {
-                    List {
+                ScrollView {
+                    VStack() {
                         ForEach(user.practices.indices, id: \.self) { index in
                             ToDoListItemView(item: user.practices[index], index: index)
+                                .padding(.horizontal)
                         }
                     }
-
                 }
                 .navigationTitle("Daily Sadhana")
                 .toolbar(content:  {
@@ -24,7 +24,7 @@ struct DailyView: View {
                         } label: {
                             Label("New Daily Sadhana", systemImage: "gear")
                         }
-                            
+                        
                         NavigationLink { //Start New Mandala Button
                             NewMandalaView()
                         } label: {

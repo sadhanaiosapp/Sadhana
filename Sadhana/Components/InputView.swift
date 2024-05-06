@@ -17,20 +17,29 @@ struct InputView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
-                .foregroundColor(Color(.darkGray))
+                .foregroundColor(Color(.black))
                 .fontWeight(.semibold)
                 .font(.footnote)
             
             if isSecureField {
                 SecureField(placeholder, text: $text)
-                    .font(.system(size: 14))
+                    .padding()
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
             
             else {
                 TextField(placeholder, text: $text)
+                    .padding()
+                    .background(Color.white)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 2)
             }
-            
-            Divider()
         }
     }
 }

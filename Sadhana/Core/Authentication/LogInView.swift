@@ -9,8 +9,12 @@ struct LogInView: View {
         NavigationStack {
             VStack {
                 //Logo
-                
-                Spacer()
+                Image("TransparentLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 250)
+                    .cornerRadius(10)
+                    .padding(.bottom, 20)
                 
                 //Form Fields
                 VStack(spacing: 24) {
@@ -19,9 +23,7 @@ struct LogInView: View {
                     InputView(text: $password, title: "Password", placeholder: "Enter your password", isSecureField: true)
                         .autocapitalization(.none)
                 }
-                .padding(.horizontal, 15)
-                .padding(.top, 12)
-    
+                .padding(.horizontal, 15)                
                 
                 //Sign In Button
                 Button {
@@ -29,18 +31,10 @@ struct LogInView: View {
                         try await viewModel.signIn(withEmail: email, password: password)
                     }
                 } label: {
-                    HStack {
-                        Text("SIGN IN")
-                            .fontWeight(.semibold)
-                        Image(systemName: "arrow.right")
-                    }
-                    .foregroundColor(Color(.white))
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                    BottomBlueButton(text: "SIGN IN", image: "arrow.right", color: Color(.white), textColor: Color(.systemBlue))
                 }
-                .background(Color(.systemBlue))
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)
-                .cornerRadius(10)
                 .padding(.top, 30)
                 
                 Spacer()
@@ -57,6 +51,10 @@ struct LogInView: View {
                             .fontWeight(.semibold)
                     }
                 }
+            }
+            .background{
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "#79FF92"), Color(hex: "#B0F8FF")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
             }
         }
     }

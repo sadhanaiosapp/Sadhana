@@ -35,7 +35,7 @@ struct FriendsView: View {
             NavigationLink {
                 CreateNewPostView()
             } label: {
-                BottomBlueButton(text: "New Post", image: "plus.circle")
+                BottomBlueButton(text: "New Post", image: "plus.circle", color: Color(.systemBlue), textColor: Color(.white))
             }
         }
     }

@@ -35,7 +35,7 @@ struct CreateNewPostView: View {
                     
                     dismiss()
                 }) {
-                    BottomBlueButton(text: "Post", image: "arrowshape.turn.up.right.fill")
+                    BottomBlueButton(text: "Post", image: "arrowshape.turn.up.right.fill", color: Color(.systemBlue), textColor: Color(.white))
                 }
                 .padding(.horizontal)
             }

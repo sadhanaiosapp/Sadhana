@@ -45,7 +45,7 @@ struct AddNewFriends: View {
                         dismiss()
                     }
                 } label: {
-                    BottomBlueButton(text: "Add Friend", image: "plus.circle.fill")
+                    BottomBlueButton(text: "Add Friend", image: "plus.circle.fill", color: Color(.systemBlue), textColor: Color(.white))
                 }
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)

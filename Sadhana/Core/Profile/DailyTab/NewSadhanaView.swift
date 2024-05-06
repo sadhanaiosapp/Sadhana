@@ -47,7 +47,7 @@ struct NewSadhanaView: View {
                     dismiss()
                     
                 } label: {
-                    BottomBlueButton(text: "SAVE", image: "arrow.right")
+                    BottomBlueButton(text: "SAVE", image: "arrow.right", color: Color(.systemBlue), textColor: Color(.white))
                 }
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)
