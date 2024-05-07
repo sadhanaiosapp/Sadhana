@@ -31,13 +31,13 @@ struct ProfileView: View {
                         NavigationLink {
                             MyPracticesView()
                         } label: {
-                            SettingsRowView(imageName: "figure.yoga", title: "My Practices", tintColor: Color(.blue))
+                            SettingsRowView(imageName: "figure.yoga", title: "My Practices", tintColor: Color(.systemBlue))
                         }
                         
                         NavigationLink {
                             MyFriendsView()
                         } label: {
-                            SettingsRowView(imageName: "person.crop.circle.badge.plus", title: "My Friends", tintColor: Color(.blue))
+                            SettingsRowView(imageName: "person.crop.circle.badge.plus", title: "My Friends", tintColor: Color(.systemBlue))
                         }
                     }
                     

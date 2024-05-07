@@ -15,33 +15,29 @@ struct PostView: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 10) {
-                Text(statement)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                    .padding(.horizontal)
-                
+        VStack(alignment: .leading, spacing: 10) {
+            Text(statement)
+                .font(.headline)
+                .foregroundColor(.primary)
+            
+            HStack {
                 Text(dateString)
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.horizontal)
+                
+                Spacer()
                 
                 Text("By \(user)")
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundColor(.blue)
-                    .padding(.horizontal)
             }
-            .frame(width: UIScreen.main.bounds.width - 32)
-            .padding(.vertical, 10)
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .padding(.horizontal)
-            .padding(.top, 10)
-            .padding(.bottom, 5)
-            
-            Spacer()
         }
+        .padding(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .shadow(radius: 5)
+        )
+        .padding(10)
     }
 }

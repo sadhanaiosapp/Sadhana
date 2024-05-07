@@ -42,8 +42,8 @@ struct ToDoListItemView: View {
                             .font(.footnote)
                             .foregroundColor(Color(isDone ? .white : .secondaryLabel))
                         
-                        if item.mandala != "" {
-                            Text("Mandala: \(item.mandalaCount) / \(item.mandala)")
+                        if item.mandalaDuration != "" {
+                            Text("Mandala: \(item.mandalaCount) / \(item.mandalaDuration)")
                                 .font(.footnote)
                                 .foregroundColor(Color(isDone ? .white : .secondaryLabel))
                         }

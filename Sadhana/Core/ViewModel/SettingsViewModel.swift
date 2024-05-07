@@ -7,12 +7,16 @@ class SettingsViewModel: ObservableObject {
     
     @Published var practiceID: String = ""
     @Published var frequency: String = "0"
-    @Published var mandala: String = "0"
-    @Published var mandalaCount: String = "0"
     @Published var count: String = "0"
+    @Published var mandalaCount: String = "0"
+    @Published var mandalaDuration: String = "0"
+    @Published var mandalasCompleted: String = "0"
     @Published var isDone: Bool = false
     
     @Published var friends: [Friend] = []
+    
+    @Published var friendProfileUID: String = ""
+    @Published var friendProfilePractices: [String] = []
     
     init() {
         Task {
@@ -20,20 +24,28 @@ class SettingsViewModel: ObservableObject {
             await self.fetchMyFriends(uid: uid!)
         }
     }
-
+    
     func fetchPracticeData(practiceID: String) async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices")
-                .document(practiceID).getDocument() else {
+            .document(practiceID).getDocument() else {
             print("ERROR: Fetching data for individua practice from Firebase...")
             return
         }
         
         self.practiceID = practiceID
         self.frequency = snapshot["frequency"] as! String
-        self.mandala = snapshot["mandala"] as! String
+        self.mandalaDuration = snapshot["mandalaDuration"] as! String
         self.mandalaCount = snapshot["mandalaCount"] as! String
+        self.mandalasCompleted = snapshot["mandalasCompleted"] as! String
         self.count = snapshot["count"] as! String
+        
+        if self.mandalaDuration != "" {
+            self.mandalaCount = "\(self.mandalaCount) / \(self.mandalaDuration)"
+        } else {
+            self.mandalaDuration = "Not Set"
+            self.mandalaCount = "N/A"
+        }
     }
     
     func fetchMyFriends(uid: String) async {
@@ -53,6 +65,31 @@ class SettingsViewModel: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func fetchFriendProfile(email: String) async {
+        let db = Firestore.firestore()
         
+        do {
+            //get friend uid
+            let querySnapshot = try await db.collection("users")
+                .whereField("email", isEqualTo: email)
+                .getDocuments()
+            for doc in querySnapshot.documents {
+                let data = doc.data()
+                self.friendProfileUID = data["id"] as! String
+            }
+            
+            //get friend practices
+            self.friendProfilePractices = []
+            let snapshot = try await db.collection("users").document(friendProfileUID)
+                .collection("practices").getDocuments()
+            for doc in snapshot.documents {
+                self.friendProfilePractices.append(doc.documentID)
+            }
+            
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }

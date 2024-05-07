@@ -41,6 +41,7 @@
 		87C8229D2BE6A54400803712 /* CreateNewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8229C2BE6A54400803712 /* CreateNewPostView.swift */; };
 		87C8229F2BE7DF2500803712 /* ProfileInitialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8229E2BE7DF2500803712 /* ProfileInitialsView.swift */; };
 		87C822A12BE7E00000803712 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C822A02BE7E00000803712 /* Friend.swift */; };
+		87C822A72BE9B27300803712 /* FriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C822A62BE9B27300803712 /* FriendProfileView.swift */; };
 		87DB55B22BD9E6FE009A77EF /* CalendarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */; };
 		87DB55B42BDAC591009A77EF /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */; };
 		87FAA4722BE28FF6003C451D /* MyPracticesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FAA4712BE28FF6003C451D /* MyPracticesView.swift */; };
@@ -102,6 +103,7 @@
 		87C8229C2BE6A54400803712 /* CreateNewPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPostView.swift; sourceTree = "<group>"; };
 		87C8229E2BE7DF2500803712 /* ProfileInitialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInitialsView.swift; sourceTree = "<group>"; };
 		87C822A02BE7E00000803712 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		87C822A62BE9B27300803712 /* FriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileView.swift; sourceTree = "<group>"; };
 		87DB55B12BD9E6FE009A77EF /* CalendarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItemView.swift; sourceTree = "<group>"; };
 		87DB55B32BDAC591009A77EF /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		87FAA4712BE28FF6003C451D /* MyPracticesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPracticesView.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				87FAA4712BE28FF6003C451D /* MyPracticesView.swift */,
 				87FAA4732BE29003003C451D /* MyFriendsView.swift */,
 				87FAA47B2BE29474003C451D /* SettingsIndividualPractice.swift */,
+				87C822A62BE9B27300803712 /* FriendProfileView.swift */,
 			);
 			path = SettingsTab;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				879E16352BD4399800D9007B /* RegistrationView.swift in Sources */,
 				879E16392BD43E9800D9007B /* SettingsRowView.swift in Sources */,
 				87C8229B2BE3FFFC00803712 /* Post.swift in Sources */,
+				87C822A72BE9B27300803712 /* FriendProfileView.swift in Sources */,
 				876E81342BD6BBB40070CBB1 /* NewMandalaView.swift in Sources */,
 				876E812B2BD6AB090070CBB1 /* DailyView.swift in Sources */,
 				876E813B2BD6E0800070CBB1 /* ToDoListItemView.swift in Sources */,

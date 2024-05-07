@@ -5,7 +5,8 @@ import FirebaseFirestore
 struct NewSadhanaView: View {
     @State var practiceName = ""
     @State var frequency = ""
-    @State var mandala = ""
+    @State var mandalasCompleted = "0"
+    @State var mandalaDuration = ""
     @State var mandalaCount = "0"
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
@@ -19,11 +20,10 @@ struct NewSadhanaView: View {
                         .autocapitalization(.none)
                     InputView(text: $frequency, title: "How many times a day do you aim to practice?", placeholder: "Frequency")
                         .autocapitalization(.none)
-                    InputView(text: $mandala, title: "Please enter duration of mandala if you are planning to do one. Otherwise, leave blank.", placeholder: "Duration")
+                    InputView(text: $mandalaDuration, title: "If you'd like to start a mandala right now, please enter a duration. Otherwise, leave blank.", placeholder: "Duration")
                 }
                 .padding(.horizontal, 15)
                 .padding(.top, 12)
-                
                 
                 Spacer()
                 
@@ -36,9 +36,9 @@ struct NewSadhanaView: View {
                             
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
-                                .setData(["frequency": frequency, "mandala": mandala, "mandalaCount": "0", "count": "0"])
+                                .setData(["frequency": frequency, "mandalaDuration": mandalaDuration, "mandalaCount": "0", "count": "0"])
                             
-                            viewModel.currentUser?.practices.append(ToDoListItem(id: practiceName, frequency: frequency, mandala: mandala, mandalaCount: "0", count: "0"))
+                            viewModel.currentUser?.practices.append(ToDoListItem(id: practiceName, frequency: frequency, mandalasCompleted: mandalasCompleted, mandalaDuration: mandalaDuration, mandalaCount: "0", count: "0"))
                         } catch {
                             print("\(error.localizedDescription)")
                         }

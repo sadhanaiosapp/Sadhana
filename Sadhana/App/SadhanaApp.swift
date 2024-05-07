@@ -48,7 +48,7 @@ struct LoadingView: View {
             Image("TransparentLogo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 350, height: 350)
+                .frame(width: 200, height: 2000)
         }
     }
 }

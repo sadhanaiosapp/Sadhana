@@ -23,7 +23,7 @@ struct CalenderView: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "lessthan")
+                        Image(systemName: "chevron.left")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 12, height: 18)
@@ -43,7 +43,7 @@ struct CalenderView: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "greaterthan")
+                        Image(systemName: "chevron.right")
                             .resizable()
                             .scaledToFill()
                             .frame(width: 12, height: 18)
@@ -75,14 +75,30 @@ struct CalenderView: View {
                                     }
                                     
                                 } label: {
-                                    VStack {
-                                        Text("\(value.day)")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.black)
+                                    if value.date == calendarViewModel.selectedDate {
+                                        VStack {
+                                            Text("\(value.day)")
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.white)
+                                            
+                                            Circle()
+                                                .frame(width: 8, height: 8)
+                                                .foregroundColor(value.color)
+                                        }
+                                        .frame(width: 28, height: 50)
+                                        .background(Color(.systemBlue))
+                                        .cornerRadius(10)
                                         
-                                        Circle()
-                                            .frame(width: 8, height: 8)
-                                            .foregroundColor(value.color)
+                                    } else {
+                                        VStack {
+                                            Text("\(value.day)")
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.black)
+                                            
+                                            Circle()
+                                                .frame(width: 8, height: 8)
+                                                .foregroundColor(value.color)
+                                        }
                                     }
                                 }
                                 
@@ -96,8 +112,14 @@ struct CalenderView: View {
                 .padding()
                 
                 VStack {
-                    ForEach(calendarViewModel.views) { view in
-                        CalendarItemView(id: view.id, isFinished: view.isFinished)
+                    if calendarViewModel.views.count == 0 {
+                        CalendarItemView(id: "No practices to show for this date!", isFinished: false)
+                    }
+                    
+                    else {
+                        ForEach(calendarViewModel.views) { view in
+                            CalendarItemView(id: view.id, isFinished: view.isFinished)
+                        }
                     }
                 }
             }
@@ -112,14 +134,7 @@ struct CalendarDate: Identifiable {
     var color: Color
 }
 
-//struct CalenderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CalenderView()
-//    }
-//}
-
 extension Date {
-    
     func monthAndYear() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM YYYY"

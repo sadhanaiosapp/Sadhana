@@ -22,13 +22,13 @@ struct DailyView: View {
                         NavigationLink { //Add New Sadhana Button
                             NewSadhanaView()
                         } label: {
-                            Label("New Daily Sadhana", systemImage: "gear")
+                            Label("New Daily Sadhana", systemImage: "figure.yoga")
                         }
                         
                         NavigationLink { //Start New Mandala Button
                             NewMandalaView()
                         } label: {
-                            Label("Start New Mandala", systemImage: "gear")
+                            Label("Start New Mandala", systemImage: "plus")
                         }
                         
                     } label: {

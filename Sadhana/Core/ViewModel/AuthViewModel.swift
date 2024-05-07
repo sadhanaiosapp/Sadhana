@@ -84,7 +84,7 @@ class AuthViewModel: ObservableObject {
                 self.currentUser?.practices = []
                 for document in snapshot!.documents {
                     let data = document.data()
-                    let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandala: data["mandala"] as! String,
+                    let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandalasCompleted: data["mandalasCompleted"] as! String, mandalaDuration: data["mandalaDuration"] as! String,
                                             mandalaCount: data["mandalaCount"] as! String, count: data["count"] as! String)
                     self.currentUser?.practices.append(item)
                 }
@@ -107,7 +107,6 @@ class AuthViewModel: ObservableObject {
         
         //NEW DAY: RESET CHECKLIST TO NOT DONE && UPDATES FIREBASE WITH NEW COUNTS
         if !calendar.isDate(currentDate, inSameDayAs: lastDate) {
-            print("it's a different day!")
             UserDefaults.standard.set(currentDate, forKey: "lastDate")
             let isDone = resetSadhana()
             await updateFirebase(lastDay: lastDate, isDone: isDone)
@@ -130,44 +129,55 @@ class AuthViewModel: ObservableObject {
     }
     
     func updateFirebase(lastDay: Date, isDone: [Bool]) async {
-        let formattedDate = lastDay.string().replacingOccurrences(of: "/", with: ".")
-        var calendarDict: [String: Bool] = [:]
-        var dotsDict: [String: String] = [:]
-        
-        for index in currentUser!.practices.indices {
-            let practice = currentUser!.practices[index]
+        do {
+            let formattedDate = lastDay.string().replacingOccurrences(of: "/", with: ".")
+            var allFinished = true
+            var calendarDict: [String: Bool] = [:]
             
-            if isDone[index] == true {
+            for index in currentUser!.practices.indices {
+                let practice = currentUser!.practices[index]
                 var oldPracticeCount = Int(practice.count)
                 var oldMandalaCount = Int(practice.mandalaCount)
+                var oldMandalasCompleted = Int(practice.mandalasCompleted)
                 
-                oldPracticeCount = oldPracticeCount! + 1
-                currentUser!.practices[index].count = String(oldPracticeCount!)
-                if practice.mandala != "" {
-                    oldMandalaCount = oldMandalaCount! + 1
-                    currentUser!.practices[index].mandalaCount = String(oldMandalaCount!)
-                }
-                
-                do {
-                    //update counts in firebase for previous day
-                    try await Firestore.firestore().collection("users").document(currentUser!.id)
-                        .collection("practices").document(practice.id)
-                        .updateData(["count": String(oldPracticeCount!), "mandalaCount": String(oldMandalaCount!)])
+                if isDone[index] == true {
+                    //update liftime count
+                    oldPracticeCount = oldPracticeCount! + 1
+                    currentUser!.practices[index].count = String(oldPracticeCount!)
                     
+                    //update mandala count
+                    if practice.mandalaDuration != "" {
+                        oldMandalaCount = oldMandalaCount! + 1
+                        if String(oldMandalaCount!) == practice.mandalaDuration {
+                            oldMandalasCompleted = oldMandalasCompleted! + 1
+                        }
+                        currentUser!.practices[index].mandalaCount = String(oldMandalaCount!)
+                        currentUser!.practices[index].mandalasCompleted = String(oldMandalasCompleted!)
+                    }
+                
                     calendarDict[practice.id] = true
-                    dotsDict[formattedDate] = "#00FF00"
-                } catch {
-                    print(error.localizedDescription)
                 }
+                
+                else {
+                    allFinished = false
+                    
+                    //mandala broken
+                    if practice.mandalaDuration != "" {
+                        oldMandalaCount = 0
+                        currentUser!.practices[index].mandalaCount = "0"
+                    }
+                    
+                    calendarDict[practice.id] = false
+                }
+                
+                //update counts in firebase for previous day
+                try await Firestore.firestore().collection("users").document(currentUser!.id)
+                    .collection("practices").document(practice.id)
+                    .updateData(["count": String(oldPracticeCount!), "mandalaCount": String(oldMandalaCount!), "mandalasCompleted": String(oldMandalasCompleted!)])
             }
             
-            else {
-                calendarDict[practice.id] = false
-                dotsDict[formattedDate] = "#FF5733"
-            }
-        }
-        
-        do {
+            var dot = allFinished ? "#2ECC71" : "#E74C3C"
+            
             //update calendar collection
             try await Firestore.firestore().collection("users").document(currentUser!.id)
                 .collection("calendar").document(formattedDate)
@@ -176,7 +186,7 @@ class AuthViewModel: ObservableObject {
             //update dots collection
             try await Firestore.firestore().collection("users").document(currentUser!.id)
                 .collection("dots").document(lastDay.monthAndYear())
-                .updateData([formattedDate: dotsDict[formattedDate]!])
+                .updateData([formattedDate: dot])
             
             //reset user feed
             let feed = try await Firestore.firestore().collection("users").document(currentUser!.id)
@@ -184,7 +194,6 @@ class AuthViewModel: ObservableObject {
             for doc in feed.documents {
                 try await doc.reference.delete()
             }
-
         } catch {
             print(error.localizedDescription)
         }
