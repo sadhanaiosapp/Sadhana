@@ -6,7 +6,11 @@ struct RegistrationView: View {
     @State private var password  = ""
     @State private var confirmPassword  = ""
     @Environment(\.dismiss) var dismiss
+    
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var calendarViewModel: CalendarViewModel
+    @EnvironmentObject var friendsViewModel: FriendsViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         ScrollView {
@@ -53,6 +57,11 @@ struct RegistrationView: View {
                 Button {
                     Task {
                         try await viewModel.createUser(withEmail: email, password: password, fullname: name)
+                        
+                        let uid = UserDefaults.standard.string(forKey: "user")
+                        await calendarViewModel.fetchDates()
+                        await friendsViewModel.fetchPosts(uid: uid!)
+                        await settingsViewModel.fetchMyFriends(uid: uid!)
                     }
                 } label: {
                     BottomBlueButton(text: "SIGN UP", image: "arrow.right", color: Color(.white), textColor: Color(.systemBlue))

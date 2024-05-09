@@ -4,7 +4,6 @@ import FirebaseFirestore
 
 @MainActor
 class SettingsViewModel: ObservableObject {
-    
     @Published var practiceID: String = ""
     @Published var frequency: String = "0"
     @Published var count: String = "0"
@@ -14,16 +13,8 @@ class SettingsViewModel: ObservableObject {
     @Published var isDone: Bool = false
     
     @Published var friends: [Friend] = []
-    
     @Published var friendProfileUID: String = ""
     @Published var friendProfilePractices: [String] = []
-    
-    init() {
-        Task {
-            let uid = UserDefaults.standard.string(forKey: "user")
-            await self.fetchMyFriends(uid: uid!)
-        }
-    }
     
     func fetchPracticeData(practiceID: String) async {
         guard let uid = Auth.auth().currentUser?.uid else { return }

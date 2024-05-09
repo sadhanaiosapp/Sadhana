@@ -27,6 +27,16 @@ struct SadhanaApp: App {
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                             withAnimation {
+                                if viewModel.currentUser != nil {
+                                    let uid = UserDefaults.standard.string(forKey: "user")
+
+                                    Task {
+                                        await calendarViewModel.fetchDates()
+                                        await friendsViewModel.fetchPosts(uid: uid!)
+                                        await settingsViewModel.fetchMyFriends(uid: uid!)
+                                    }
+                                }
+                                
                                 isLoading = false
                             }
                         }
@@ -48,7 +58,7 @@ struct LoadingView: View {
             Image("TransparentLogo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 200, height: 2000)
+                .frame(width: 200, height: 200)
         }
     }
 }

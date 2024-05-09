@@ -49,6 +49,7 @@ class AuthViewModel: ObservableObject {
             try Auth.auth().signOut()
             self.userSession = nil //switches controller view back to log-in
             self.currentUser = nil //clears user information
+            UserDefaults.standard.set("", forKey: "user")
         } catch {
             print("DEBUG: Sign Out Error is \(error.localizedDescription)")
         }
@@ -89,6 +90,7 @@ class AuthViewModel: ObservableObject {
                     self.currentUser?.practices.append(item)
                 }
             }
+
         } else {
             self.currentUser = nil
         }
@@ -100,6 +102,7 @@ class AuthViewModel: ObservableObject {
         let currentDate = Date()
         
         guard let lastDate = UserDefaults.standard.object(forKey: "lastDate") as? Date else {
+            UserDefaults.standard.set(currentDate, forKey: "lastDate")
             return
         }
         
@@ -176,7 +179,7 @@ class AuthViewModel: ObservableObject {
                     .updateData(["count": String(oldPracticeCount!), "mandalaCount": String(oldMandalaCount!), "mandalasCompleted": String(oldMandalasCompleted!)])
             }
             
-            var dot = allFinished ? "#2ECC71" : "#E74C3C"
+            let dot = allFinished ? "#2ECC71" : "#E74C3C"
             
             //update calendar collection
             try await Firestore.firestore().collection("users").document(currentUser!.id)
@@ -186,7 +189,7 @@ class AuthViewModel: ObservableObject {
             //update dots collection
             try await Firestore.firestore().collection("users").document(currentUser!.id)
                 .collection("dots").document(lastDay.monthAndYear())
-                .updateData([formattedDate: dot])
+                .updateData(["\(formattedDate)": dot])
             
             //reset user feed
             let feed = try await Firestore.firestore().collection("users").document(currentUser!.id)

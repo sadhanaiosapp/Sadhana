@@ -28,7 +28,7 @@ struct ProfileInitialsView: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .frame(width: 72, height: 72)
-                    .background(Color(.systemGray2))
+                    .background(Color(.systemGray))
                     .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -42,7 +42,6 @@ struct ProfileInitialsView: View {
                         .foregroundColor(.gray)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width - 32)
             .padding(.top, 10)
         }
         .sheet(isPresented: $isNextViewPresented) {

@@ -7,13 +7,6 @@ class FriendsViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var friends: [String] = []
     
-    init() {
-        Task {
-            let uid = UserDefaults.standard.string(forKey: "user")
-            await fetchPosts(uid: uid!)
-        }
-    }
-    
     func addFriend(uid: String, email: String) async -> String {
         let db = Firestore.firestore()
         let friendEmail = email.lowercased()
@@ -87,9 +80,8 @@ class FriendsViewModel: ObservableObject {
             self.posts = []
             let userDocSnapshot = try await Firestore.firestore().collection("users").document(uid).getDocument().data()
             self.friends = userDocSnapshot!["friends"] as! [String]
-            print("Friends: \(self.friends)")
             
-            let snapshot = try await Firestore.firestore().collection("users").document(uid).collection("feed").getDocuments()
+            let snapshot = try await Firestore.firestore().collection("users").document(uid).collection("feed").order(by: "time", descending: true).getDocuments()
             
             for document in snapshot.documents {
                 let data = document.data()

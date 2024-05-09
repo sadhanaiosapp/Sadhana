@@ -7,6 +7,7 @@ struct FriendsView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
+                Text("")
                 ForEach(friendsViewModel.posts) { post in
                     PostView(statement: post.statement, date: post.date, user: post.user)
                 }

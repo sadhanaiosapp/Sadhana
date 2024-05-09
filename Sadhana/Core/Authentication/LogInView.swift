@@ -4,6 +4,9 @@ struct LogInView: View {
     @State private var email = ""
     @State private var password  = ""
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var calendarViewModel: CalendarViewModel
+    @EnvironmentObject var friendsViewModel: FriendsViewModel
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
     
     var body: some View {
         NavigationStack {
@@ -29,6 +32,11 @@ struct LogInView: View {
                 Button {
                     Task {
                         try await viewModel.signIn(withEmail: email, password: password)
+                        
+                        let uid = UserDefaults.standard.string(forKey: "user")
+                        await calendarViewModel.fetchDates()
+                        await friendsViewModel.fetchPosts(uid: uid!)
+                        await settingsViewModel.fetchMyFriends(uid: uid!)
                     }
                 } label: {
                     BottomBlueButton(text: "SIGN IN", image: "arrow.right", color: Color(.white), textColor: Color(.systemBlue))

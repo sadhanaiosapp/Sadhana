@@ -36,7 +36,7 @@ struct NewSadhanaView: View {
                             
                             try await Firestore.firestore().collection("users").document(user.id)
                                 .collection("practices").document(practiceName)
-                                .setData(["frequency": frequency, "mandalaDuration": mandalaDuration, "mandalaCount": "0", "count": "0"])
+                                .setData(["frequency": frequency, "mandalaDuration": mandalaDuration, "mandalasCompleted": "0",  "mandalaCount": "0", "count": "0"])
                             
                             viewModel.currentUser?.practices.append(ToDoListItem(id: practiceName, frequency: frequency, mandalasCompleted: mandalasCompleted, mandalaDuration: mandalaDuration, mandalaCount: "0", count: "0"))
                         } catch {

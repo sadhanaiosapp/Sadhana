@@ -9,12 +9,6 @@ class CalendarViewModel: ObservableObject {
     @Published var views: [CalendarItemView] = []
     @Published var dates: [CalendarDate] = []
     
-    init() {
-        Task {
-            await fetchDates()
-        }
-    }
-    
     func fetchPracticesForCalendarDate(user: User, selectedDate: Date) async {
         self.views = []
         let dateString = selectedDate.string().replacingOccurrences(of: "/", with: ".")

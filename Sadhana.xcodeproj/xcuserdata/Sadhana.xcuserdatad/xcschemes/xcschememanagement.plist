@@ -28,7 +28,25 @@
 		<key>Sadhana.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8729FE812BD2E8580076296B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8729FE922BD2E85C0076296B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8729FE9C2BD2E85C0076296B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
