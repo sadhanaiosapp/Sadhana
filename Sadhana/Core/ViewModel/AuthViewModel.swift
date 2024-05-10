@@ -36,7 +36,8 @@ class AuthViewModel: ObservableObject {
             self.userSession = result.user
             let user = User(id: result.user.uid, fullname: fullname, email: email)
             let friends: [String] = [user.id]
-            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends])
+            let friendRequests: [String] = []
+            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends, "friendRequests": friendRequests])
             
             await fetchUser()
         } catch {
@@ -81,8 +82,8 @@ class AuthViewModel: ObservableObject {
             //FETCH USER PRACTICES - COULD BE THE REASON FOR SLOW BOOTUP
             let snapshot = try? await Firestore.firestore().collection("users").document(uid).collection("practices").getDocuments()
             
+            self.currentUser?.practices = []
             if snapshot != nil {
-                self.currentUser?.practices = []
                 for document in snapshot!.documents {
                     let data = document.data()
                     let item = ToDoListItem(id: document.documentID, frequency: data["frequency"] as! String, mandalasCompleted: data["mandalasCompleted"] as! String, mandalaDuration: data["mandalaDuration"] as! String,
@@ -189,7 +190,7 @@ class AuthViewModel: ObservableObject {
             //update dots collection
             try await Firestore.firestore().collection("users").document(currentUser!.id)
                 .collection("dots").document(lastDay.monthAndYear())
-                .updateData(["\(formattedDate)": dot])
+                .setData(["\(formattedDate)": dot], merge: true)
             
             //reset user feed
             let feed = try await Firestore.firestore().collection("users").document(currentUser!.id)

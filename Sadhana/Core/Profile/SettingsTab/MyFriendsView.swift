@@ -16,6 +16,12 @@ struct MyFriendsView: View {
             .padding(.top, 20)
             .navigationTitle("My Friends")
         }
+        .refreshable {
+            Task {
+                let uid = UserDefaults.standard.string(forKey: "user")
+                await settingsViewModel.fetchMyFriends(uid: uid!)
+            }
+        }
     }
 }
 

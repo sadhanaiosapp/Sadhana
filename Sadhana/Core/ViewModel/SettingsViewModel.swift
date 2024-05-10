@@ -13,6 +13,7 @@ class SettingsViewModel: ObservableObject {
     @Published var isDone: Bool = false
     
     @Published var friends: [Friend] = []
+    @Published var friendRequests: [Friend] = []
     @Published var friendProfileUID: String = ""
     @Published var friendProfilePractices: [String] = []
     
@@ -48,9 +49,9 @@ class SettingsViewModel: ObservableObject {
             let userFriends = snapshot!["friends"] as! [String]
             
             for friendUID in userFriends {
-                let friendData = try await db.collection("users").document(friendUID).getDocument().data()
-                let friendFullName = friendData!["fullname"] as! String
-                let friendEmail = friendData!["email"] as! String
+                guard let friendData = try await db.collection("users").document(friendUID).getDocument().data() else { continue }
+                let friendFullName = friendData["fullname"] as! String
+                let friendEmail = friendData["email"] as! String
                 self.friends.append(Friend(id: friendUID, fullname: friendFullName, email: friendEmail))
             }
         } catch {
@@ -79,6 +80,25 @@ class SettingsViewModel: ObservableObject {
                 self.friendProfilePractices.append(doc.documentID)
             }
             
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetchFriendRequests(uid: String) async {
+        let db = Firestore.firestore()
+        self.friendRequests = []
+        
+        do {
+            let snapshot = try await db.collection("users").document(uid).getDocument().data()
+            let userFriends = snapshot!["friendRequests"] as! [String]
+            
+            for friendUID in userFriends {
+                guard let friendData = try await db.collection("users").document(friendUID).getDocument().data() else { return }
+                let friendFullName = friendData["fullname"] as! String
+                let friendEmail = friendData["email"] as! String
+                self.friendRequests.append(Friend(id: friendUID, fullname: friendFullName, email: friendEmail))
+            }
         } catch {
             print(error.localizedDescription)
         }

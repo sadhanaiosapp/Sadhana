@@ -27,7 +27,7 @@ struct PostView: View {
                 
                 Spacer()
                 
-                Text("By \(user)")
+                Text(user)
                     .font(.subheadline)
                     .foregroundColor(.blue)
             }

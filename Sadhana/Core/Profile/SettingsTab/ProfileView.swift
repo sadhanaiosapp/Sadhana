@@ -8,7 +8,7 @@ struct ProfileView: View {
         if let user = viewModel.currentUser {
             NavigationStack {
                 List {
-                    //HEADLINE
+                    //HEADLINES
                     Section {
                         ProfileInitialsView(initials: user.initials, fullname: user.fullname, email: user.email)
                         
@@ -37,7 +37,13 @@ struct ProfileView: View {
                         NavigationLink {
                             MyFriendsView()
                         } label: {
-                            SettingsRowView(imageName: "person.crop.circle.badge.plus", title: "My Friends", tintColor: Color(.systemBlue))
+                            SettingsRowView(imageName: "person.2.circle.fill", title: "My Friends", tintColor: Color(.systemBlue))
+                        }
+                        
+                        NavigationLink {
+                            FriendRequestsView()
+                        } label: {
+                            SettingsRowView(imageName: "person.badge.plus", title: "Friend Requests", tintColor: Color(.systemBlue))
                         }
                     }
                     

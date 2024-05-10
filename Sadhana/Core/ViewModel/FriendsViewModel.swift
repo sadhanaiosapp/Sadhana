@@ -7,9 +7,10 @@ class FriendsViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var friends: [String] = []
     
-    func addFriend(uid: String, email: String) async -> String {
+    func createFriendRequest(uid: String, friendRequestEmail: String) async -> String {
         let db = Firestore.firestore()
-        let friendEmail = email.lowercased()
+        let friendEmail = friendRequestEmail.lowercased()
+        
         do {
             var friendUID = ""
             let querySnapshot = try await db.collection("users")
@@ -25,11 +26,12 @@ class FriendsViewModel: ObservableObject {
                 return "No user with this email was found!"
             }
             
-            let snapshot = try await db.collection("users").document(uid).getDocument().data()
-            var userFriends = snapshot!["friends"] as! [String]
-            userFriends.append(friendUID)
-            try await db.collection("users").document(uid)
-                .updateData(["friends": userFriends])
+            //Add user to friends friendRequests
+            let snapshot = try await db.collection("users").document(friendUID).getDocument().data()
+            var friendFriendsRequests = snapshot!["friendRequests"] as! [String]
+            friendFriendsRequests.append(uid)
+            try await db.collection("users").document(friendUID)
+                .updateData(["friendRequests": friendFriendsRequests])
             
         } catch {
             return "There was an error while adding this user!"
@@ -38,10 +40,76 @@ class FriendsViewModel: ObservableObject {
         return ""
     }
     
+    func addFriend(uid: String, friendRequestEmail: String) async {
+        let db = Firestore.firestore()
+        let friendEmail = friendRequestEmail.lowercased()
+        
+        do {
+            //find friendUID
+            var friendUID = ""
+            let querySnapshot = try await db.collection("users")
+                                .whereField("email", isEqualTo: friendEmail)
+                                .getDocuments()
+            
+            for document in querySnapshot.documents {
+                let data = document.data()
+                friendUID = data["id"] as! String
+            }
+            
+            //add friend to user's friends
+            let snapshot = try await db.collection("users").document(uid).getDocument().data()
+            var userFriends = snapshot!["friends"] as! [String]
+            userFriends.append(friendUID)
+            try await db.collection("users").document(uid)
+                .updateData(["friends": userFriends])
+            
+            //add user to other user's friends
+            let otherUserSnapshot = try await db.collection("users").document(friendUID).getDocument().data()
+            var otherUserFriends = otherUserSnapshot!["friends"] as! [String]
+            otherUserFriends.append(uid)
+            try await db.collection("users").document(friendUID)
+                .updateData(["friends": otherUserFriends])
+            
+            //remove friend request
+            await self.removeFriendRequest(uid: uid, friendRequestEmail: friendRequestEmail)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func removeFriendRequest(uid: String, friendRequestEmail: String) async {
+        let db = Firestore.firestore()
+        var friendEmail = friendRequestEmail.lowercased()
+        
+        do {
+            //find friendUID from email
+            var friendUID = ""
+            let querySnapshot = try await db.collection("users")
+                                .whereField("email", isEqualTo: friendEmail)
+                                .getDocuments()
+            
+            for document in querySnapshot.documents {
+                let data = document.data()
+                friendUID = data["id"] as! String
+            }
+            
+            //remove friendUID from user's friendRequests
+            let snapshot = try await db.collection("users").document(uid).getDocument().data()
+            var userFriendRequests = snapshot!["friendRequests"] as! [String]
+            
+            userFriendRequests.removeAll{ $0 == friendUID }
+            try await db.collection("users").document(uid)
+                .updateData(["friendRequests": userFriendRequests])
+            
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+    }
+    
     func postSadhanaUpdate(isDone: Bool, time: Timestamp, uid: String, email: String, statement: String) async {
         
         let db = Firestore.firestore()
-
         
         if isDone {
             //add to the posts collection

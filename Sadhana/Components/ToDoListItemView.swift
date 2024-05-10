@@ -8,7 +8,6 @@ struct ToDoListItemView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var friendsViewModel: FriendsViewModel
     
-    
     var body: some View {
         
         if viewModel.currentUser != nil {

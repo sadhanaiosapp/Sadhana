@@ -10,9 +10,18 @@ struct DailyView: View {
             NavigationStack {
                 ScrollView {
                     VStack() {
-                        ForEach(user.practices.indices, id: \.self) { index in
-                            ToDoListItemView(item: user.practices[index], index: index)
-                                .padding(.horizontal)
+                        if user.practices.count != 0 {
+                            ForEach(user.practices.indices, id: \.self) { index in
+                                ToDoListItemView(item: user.practices[index], index: index)
+                                    .padding(.horizontal)
+                            }
+                        }
+                        
+                        else {
+                            Text("Please click on the '+' to add a new practice!")
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                                .padding()
                         }
                     }
                 }

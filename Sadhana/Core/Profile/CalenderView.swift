@@ -10,117 +10,126 @@ struct CalenderView: View {
     
     var body: some View {
         if let user = viewModel.currentUser {
-            VStack(spacing: 20) {
-                //Month Selection
-                HStack {
+            ScrollView {
+                VStack(spacing: 20) {
+                    //Month Selection
                     Spacer()
-                    Button {
-                        withAnimation {
-                            calendarViewModel.selectedMonth -= 1
-                            calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
-                            Task {
-                                await calendarViewModel.fetchDates()
+                    
+                    HStack {
+                        Spacer()
+                        Button {
+                            withAnimation {
+                                calendarViewModel.selectedMonth -= 1
+                                calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
+                                Task {
+                                    await calendarViewModel.fetchDates()
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 12, height: 18)
                         }
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 12, height: 18)
-                    }
-                    
-                    Spacer()
-                    Text(calendarViewModel.selectedDate.monthAndYear())
-                        .font(.title2)
-                    Spacer()
-                    
-                    Button {
-                        withAnimation {
-                            calendarViewModel.selectedMonth += 1
-                            calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
-                            Task {
-                                await calendarViewModel.fetchDates()
+                        
+                        Spacer()
+                        Text(calendarViewModel.selectedDate.monthAndYear())
+                            .font(.title2)
+                        Spacer()
+                        
+                        Button {
+                            withAnimation {
+                                calendarViewModel.selectedMonth += 1
+                                calendarViewModel.selectedDate = calendarViewModel.fetchSelectedMonth()
+                                Task {
+                                    await calendarViewModel.fetchDates()
+                                }
                             }
+                        } label: {
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 12, height: 18)
                         }
-                    } label: {
-                        Image(systemName: "chevron.right")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 12, height: 18)
-                    }
-                    
-                    Spacer()
-                }
-                
-                //Days of the Week
-                HStack {
-                    Spacer()
-                    ForEach(days, id:\.self) { day in
-                        Text(day)
-                            .font(.system(size: 12, weight: .medium))
                         
                         Spacer()
                     }
-                }
-                
-                //Days
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 20) {
-                    ForEach(calendarViewModel.dates, id: \.id) { value in
-                        ZStack {
-                            if value.day != -1 {
-                                Button {
-                                    calendarViewModel.selectedDate = value.date
-                                    Task {
-                                        await calendarViewModel.fetchPracticesForCalendarDate(user: user, selectedDate: calendarViewModel.selectedDate)
-                                    }
-                                    
-                                } label: {
-                                    if value.date == calendarViewModel.selectedDate {
-                                        VStack {
-                                            Text("\(value.day)")
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.white)
-                                            
-                                            Circle()
-                                                .frame(width: 8, height: 8)
-                                                .foregroundColor(value.color)
-                                        }
-                                        .frame(width: 28, height: 50)
-                                        .background(Color(.systemBlue))
-                                        .cornerRadius(10)
-                                        
-                                    } else {
-                                        VStack {
-                                            Text("\(value.day)")
-                                                .fontWeight(.semibold)
-                                                .foregroundColor(.black)
-                                            
-                                            Circle()
-                                                .frame(width: 8, height: 8)
-                                                .foregroundColor(value.color)
-                                        }
-                                    }
-                                }
-                                
-                            } else {
-                                Text("")
-                            }
+                    
+                    //Days of the Week
+                    HStack {
+                        Spacer()
+                        ForEach(days, id:\.self) { day in
+                            Text(day)
+                                .font(.system(size: 12, weight: .medium))
+                            
+                            Spacer()
                         }
-                        .frame(width: 32, height: 32)
-                    }
-                }
-                .padding()
-                
-                VStack {
-                    if calendarViewModel.views.count == 0 {
-                        CalendarItemView(id: "No practices to show for this date!", isFinished: false)
                     }
                     
-                    else {
-                        ForEach(calendarViewModel.views) { view in
-                            CalendarItemView(id: view.id, isFinished: view.isFinished)
+                    //Days
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 20) {
+                        ForEach(calendarViewModel.dates, id: \.id) { value in
+                            ZStack {
+                                if value.day != -1 {
+                                    Button {
+                                        calendarViewModel.selectedDate = value.date
+                                        Task {
+                                            await calendarViewModel.fetchPracticesForCalendarDate(user: user, selectedDate: calendarViewModel.selectedDate)
+                                        }
+                                        
+                                    } label: {
+                                        if value.date == calendarViewModel.selectedDate {
+                                            VStack {
+                                                Text("\(value.day)")
+                                                    .fontWeight(.semibold)
+                                                    .foregroundColor(.white)
+                                                
+                                                Circle()
+                                                    .frame(width: 8, height: 8)
+                                                    .foregroundColor(value.color)
+                                            }
+                                            .frame(width: 28, height: 50)
+                                            .background(Color(.systemBlue))
+                                            .cornerRadius(10)
+                                            
+                                        } else {
+                                            VStack {
+                                                Text("\(value.day)")
+                                                    .fontWeight(.semibold)
+                                                    .foregroundColor(.black)
+                                                
+                                                Circle()
+                                                    .frame(width: 8, height: 8)
+                                                    .foregroundColor(value.color)
+                                            }
+                                        }
+                                    }
+                                    
+                                } else {
+                                    Text("")
+                                }
+                            }
+                            .frame(width: 32, height: 32)
                         }
                     }
+                    .padding()
+                    
+                    VStack {
+                        if calendarViewModel.views.count == 0 {
+                            CalendarItemView(id: "No practices to show for this date!", isFinished: false)
+                        }
+                        
+                        else {
+                            ForEach(calendarViewModel.views) { view in
+                                CalendarItemView(id: view.id, isFinished: view.isFinished)
+                            }
+                        }
+                    }
+                }
+            }
+            .refreshable {
+                Task {
+                    await calendarViewModel.fetchDates()
                 }
             }
         }

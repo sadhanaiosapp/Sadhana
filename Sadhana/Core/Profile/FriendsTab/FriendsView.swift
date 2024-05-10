@@ -7,9 +7,17 @@ struct FriendsView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
-                Text("")
-                ForEach(friendsViewModel.posts) { post in
-                    PostView(statement: post.statement, date: post.date, user: post.user)
+                if friendsViewModel.posts.count != 0 {
+                    ForEach(friendsViewModel.posts) { post in
+                        PostView(statement: post.statement, date: post.date, user: post.user)
+                    }
+                }
+                
+                else {
+                    Text("Feed resets daily! There are no posts to be shown yet today. Please click on the '+' to add new friends.")
+                        .font(.headline)
+                        .foregroundColor(.gray)
+                        .padding()
                 }
             }
             .refreshable {

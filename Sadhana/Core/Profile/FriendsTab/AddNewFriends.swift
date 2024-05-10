@@ -38,12 +38,13 @@ struct AddNewFriends: View {
                 
                 Button{
                     Task {
-                        showError = await friendsViewModel.addFriend(uid: user.id, email: email)
+                        showError = await friendsViewModel.createFriendRequest(uid: user.id, friendRequestEmail: email)
                     }
                     
-                    if showError != "" {
+                    if showError == "" {
                         dismiss()
                     }
+                    
                 } label: {
                     BottomBlueButton(text: "Add Friend", image: "plus.circle.fill", color: Color(.systemBlue), textColor: Color(.white))
                 }
