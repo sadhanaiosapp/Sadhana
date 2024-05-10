@@ -32,16 +32,42 @@ class AuthViewModel: ObservableObject {
     
     func createUser(withEmail email: String, password: String, fullname: String) async throws {
         do {
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = result.user
-            let user = User(id: result.user.uid, fullname: fullname, email: email)
-            let friends: [String] = [user.id]
-            let friendRequests: [String] = []
-            try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends, "friendRequests": friendRequests])
+            if await !userExists(email: email) {
+                let result = try await Auth.auth().createUser(withEmail: email, password: password)
+                self.userSession = result.user
+                let user = User(id: result.user.uid, fullname: fullname, email: email)
+                let friends: [String] = [user.id]
+                let friendRequests: [String] = []
+                try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends, "friendRequests": friendRequests])
+                
+                await fetchUser()
+            }
             
-            await fetchUser()
+            else {
+                print("User's email already exists...")
+            }
         } catch {
             print("DEBUG: Failed to create user with error \(error.localizedDescription)")
+        }
+    }
+    
+    func userExists(email: String) async -> Bool {
+        do {
+            let db = Firestore.firestore()
+            let querySnapshot = try await db.collection("users")
+                                .whereField("email", isEqualTo: email)
+                                .getDocuments()
+            
+            if querySnapshot.documents.count > 0 {
+                return true
+            }
+            
+            return false
+        } 
+        
+        catch {
+            print(error.localizedDescription)
+            return false
         }
     }
     
