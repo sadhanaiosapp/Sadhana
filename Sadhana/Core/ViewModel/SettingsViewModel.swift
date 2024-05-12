@@ -103,4 +103,16 @@ class SettingsViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    func updatePracticeInfo(uid: String, practice: String, dF: String, mD: String) async {
+        let db = Firestore.firestore()
+        
+        do {
+            try await db.collection("users").document(uid).collection("practices").document(practice)
+                .updateData(["frequency": dF, "mandalaDuration": mD])
+                
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }
