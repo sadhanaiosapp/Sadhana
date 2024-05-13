@@ -15,7 +15,7 @@ class AuthViewModel: ObservableObject {
         self.userSession = Auth.auth().currentUser
         
         Task {
-            await fetchUser()
+            try await fetchUser()
             await checkForNewDay()
         }
     }
@@ -24,7 +24,7 @@ class AuthViewModel: ObservableObject {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
-            await fetchUser()
+            try await fetchUser()
         } catch {
             print("DEBUG: Error while signing in of \(error.localizedDescription)")
         }
@@ -40,7 +40,7 @@ class AuthViewModel: ObservableObject {
                 let friendRequests: [String] = []
                 try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends, "friendRequests": friendRequests])
                 
-                await fetchUser()
+                try await fetchUser()
             }
             
             else {
@@ -55,15 +55,15 @@ class AuthViewModel: ObservableObject {
         do {
             let db = Firestore.firestore()
             let querySnapshot = try await db.collection("users")
-                                .whereField("email", isEqualTo: email)
-                                .getDocuments()
+                .whereField("email", isEqualTo: email)
+                .getDocuments()
             
             if querySnapshot.documents.count > 0 {
                 return true
             }
             
             return false
-        } 
+        }
         
         catch {
             print(error.localizedDescription)
@@ -96,7 +96,7 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func fetchUser() async {
+    func fetchUser() async throws {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
         
@@ -117,7 +117,7 @@ class AuthViewModel: ObservableObject {
                     self.currentUser?.practices.append(item)
                 }
             }
-
+            
         } else {
             self.currentUser = nil
         }
@@ -155,6 +155,7 @@ class AuthViewModel: ObservableObject {
             }
             UserDefaults.standard.set(false, forKey: practice.id)
         }
+        
         return isDone
     }
     
@@ -184,7 +185,7 @@ class AuthViewModel: ObservableObject {
                         currentUser!.practices[index].mandalaCount = String(oldMandalaCount!)
                         currentUser!.practices[index].mandalasCompleted = String(oldMandalasCompleted!)
                     }
-                
+                    
                     calendarDict[practice.id] = true
                 }
                 

@@ -116,7 +116,7 @@ struct CalenderView: View {
                     
                     VStack {
                         if calendarViewModel.views.count == 0 {
-                            CalendarItemView(id: "No practices to show for this date!", isFinished: false)
+                            CalendarItemView(id: "No practices to show for this date, calendar updates daily at midnight!", isFinished: false)
                         }
                         
                         else {

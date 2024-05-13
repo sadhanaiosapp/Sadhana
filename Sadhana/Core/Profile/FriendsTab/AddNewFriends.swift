@@ -5,6 +5,7 @@ import FirebaseFirestore
 struct AddNewFriends: View {
     @State private var email = ""
     @State private var showError = ""
+    @State private var isFriendRequestSent = false
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var friendsViewModel: FriendsViewModel
@@ -42,6 +43,7 @@ struct AddNewFriends: View {
                     }
                     
                     if showError == "" {
+                        self.isFriendRequestSent = true
                         dismiss()
                     }
                     
@@ -51,6 +53,9 @@ struct AddNewFriends: View {
                 .disabled(!formIsValid)
                 .opacity(formIsValid ? 1.0 : 0.5)
                 .padding(.horizontal)
+                .alert(isPresented: $isFriendRequestSent) {
+                    Alert(title: Text("Friend Request Sent"), message: Text("Once the user accepts your friend request, you both will become friends!"), dismissButton: .default(Text("Dismiss")))
+                }
             }
             .padding()
         }

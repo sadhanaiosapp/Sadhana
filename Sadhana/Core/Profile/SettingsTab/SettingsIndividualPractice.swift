@@ -23,6 +23,7 @@ struct SettingsIndividualPractice: View {
                 .italic()
                 .padding(.horizontal)
                 .padding(.bottom, 10)
+                .multilineTextAlignment(.center)
             
             EditView(title: "Daily Frequency", value: settingsViewModel.frequency, editedValue: $dailyFreq)
             InfoView(title: "Lifetime Count", value: settingsViewModel.count)
