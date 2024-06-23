@@ -34,6 +34,7 @@ struct SadhanaApp: App {
                                         await calendarViewModel.fetchDates()
                                         await friendsViewModel.fetchPosts(uid: uid!)
                                         await settingsViewModel.fetchMyFriends(uid: uid!)
+                                        await settingsViewModel.fetchFriendRequests(uid: uid!)
                                     }
                                 }
                                 

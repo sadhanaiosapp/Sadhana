@@ -79,7 +79,7 @@ class FriendsViewModel: ObservableObject {
     
     func removeFriendRequest(uid: String, friendRequestEmail: String) async {
         let db = Firestore.firestore()
-        var friendEmail = friendRequestEmail.lowercased()
+        let friendEmail = friendRequestEmail.lowercased()
         
         do {
             //find friendUID from email

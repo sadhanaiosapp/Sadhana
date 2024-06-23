@@ -38,8 +38,11 @@ class AuthViewModel: ObservableObject {
                 let user = User(id: result.user.uid, fullname: fullname, email: email)
                 let friends: [String] = [user.id]
                 let friendRequests: [String] = []
+                
+                print("works until this point...")
                 try await Firestore.firestore().collection("users").document(user.id).setData(["id": user.id, "fullname": user.fullname, "email": user.email, "friends": friends, "friendRequests": friendRequests])
                 
+                print("this command supposedly fulfilled...")
                 try await fetchUser()
             }
             

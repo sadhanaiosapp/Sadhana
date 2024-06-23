@@ -34,15 +34,15 @@ class CalendarViewModel: ObservableObject {
         let user = UserDefaults.standard.string(forKey: "user")
         var dictionary: [String: String] = [:]
         
-        if let snapshot = try? await Firestore.firestore().collection("users").document(user!)
-            .collection("dots").document(documentName).getDocument() {
-
-            if let data = snapshot.data() {
-                for (key, value) in data {
-                    dictionary[key] = value as? String
-                }
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(user!).collection("dots").document(documentName).getDocument() else { return }
+        
+        if let data = snapshot.data() {
+            for (key, value) in data {
+                dictionary[key] = value as? String
             }
-        } else {
+        }
+        
+        else {
             print("Error fetching document")
         }
 
