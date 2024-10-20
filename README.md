@@ -2,6 +2,8 @@
 
 Sadhana is an iOS app designed for personal meditation tracking, allowing users to monitor their mindfulness journey while connecting with friends for mutual encouragement. The app helps users stay consistent with their meditation practice and engage in a supportive community.
 
+[Download Sadhana on the App Store](https://apps.apple.com/us/app/sadhana-meditation-tracker/id6504772098)
+
 ## Repository Structure
 
 ### Sadhana/App
